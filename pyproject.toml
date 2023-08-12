@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "aeroespacial-site-py"
+version = "0.1.0"
+description = "HUB Aeroespacial"
+authors = ["Lucas Moura de Almeida"]
+readme = "README.md"
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2.4"
+pydash = "^7.0.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
