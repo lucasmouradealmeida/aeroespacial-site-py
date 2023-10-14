@@ -1,0 +1,18 @@
+{
+    "recommendations": [
+      "ms-python.black-formatter",
+      "irongeek.vscode-env",
+      "charliermarsh.ruff",
+      "sibiraj-s.vscode-scss-formatter",
+      "njpwerner.autodocstring",
+      "tamasfe.even-better-toml",
+      "ms-python.python",
+      "vue.volar",
+      "syler.sass-indented",
+      "bradlc.vscode-tailwindcss",
+      "sibiraj-s.vscode-scss-formatter",
+      "vue.volar",
+      "wholroyd.jinja"
+    ]
+  }
+  

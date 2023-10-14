@@ -1,0 +1,12 @@
+@import "helpers";
+
+* {
+    @apply outline-none
+        focus-visible:rounded-md
+        focus-visible:ring
+        focus-visible:ring-red-100;
+}
+
+body {
+    @apply text-base text-gray-900 font-normal;
+}

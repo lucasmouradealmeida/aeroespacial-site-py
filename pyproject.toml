@@ -1,19 +1,108 @@
 [tool.poetry]
-name = "aeroespacial-site-py"
+name = "aeroespacial-site"
 version = "0.1.0"
-description = "HUB Aeroespacial"
-authors = ["Lucas Moura de Almeida"]
+description = "Site white-label em Python."
+authors = ["Douglas Panhota <douglas.panhota@ape11.com.br>"]
 readme = "README.md"
-packages = [{include = "app"}]
+packages = [{ include = "server" }]
 
 [tool.poetry.dependencies]
-python = "^3.11"
-pydash = "^7.0.6"
-flask = "^2.3.3"
-pydantic = "^2.4.2"
-pydantic-settings = "^2.0.3"
+python = "^3.11,<3.12"
+flask = "^2.3.2"
+pydash = "^7.0.5"
+pydantic = "^2.0.3"
+requests = "^2.31.0"
+ipython = "^8.14.0"
+gunicorn = "^21.2.0"
+python-dotenv = "^1.0.0"
+pydantic-settings = "^2.0.2"
+rich = "^13.5.2"
+redis = {extras = ["hiredis"], version = "^5.0.0"}
+flask-wtf = "^1.1.1"
+flask-mail = "^0.9.1"
+flask-session = "^0.5.0"
+pillow = "^10.0.1"
+werkzeug = "<3.0.0"  # @TODO downgrade devido a issue no cookie session
 
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+black = "^23.7.0"
+ruff = "^0.0.280"
+mypy = "^1.5.1"
+types-requests = "^2.31.0.2"
+watchdog = {extras = ["watchmedo"], version = "^3.0.0"}
+flower = "^2.0.1"
+ipykernel = "^6.25.2"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+python_version = "3.9"
+plugins = ["pydantic.mypy"]
+disallow_untyped_defs = false
+warn_no_return = true
+exclude = [".venv", "__pycache__", "scripts", "docs"]
+ignore_missing_imports = true
+follow_imports = "skip"
+strict_optional = true
+pretty = true
+
+[tool.ruff]
+select = ["E", "F"]
+ignore = [ "F403", "F405" ]
+fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
+unfixable = []
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "migrations",
+]
+line-length = 88
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+target-version = "py39"
+
+[tool.black]
+line-length = 88
+
+[tool.ruff.mccabe]
+max-complexity = 10
+
+[tool.poetry.scripts]
+server = "scripts.poetry:run_server"
+worker = "scripts.poetry:run_worker"
+flower = "scripts.poetry:run_flower"
+format = "scripts.poetry:run_format"
+lint = "scripts.poetry:run_lint"
+pyshell = "scripts.poetry:run_pyshell"
+test = "scripts.poetry:run_test"
+precommit = "scripts.poetry:run_precommit"
+makerequirements = "scripts.poetry:run_makerequirements"
+pycacheremove = "scripts.poetry:run_pycacheremove"
+redis_start = "scripts.poetry:run_redis_start"
+redis_stop = "scripts.poetry:run_redis_stop"
+redis_down = "scripts.poetry:run_redis_down"
+redis_clean = "scripts.poetry:run_redis_clean"
+redis_log = "scripts.poetry:run_redis_log"

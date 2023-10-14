@@ -1,0 +1,208 @@
+.navbarLead-component {
+    .container-card {
+        display: grid;
+        grid-template-columns: 40% 59%;
+        gap: 10px;
+        width: 100%;
+
+        @media (max-width: 767.98px) {
+            padding: 0.75rem;
+        }
+
+        .card-component {
+            &.alert {
+                background: #dbecde;
+
+                p {
+                    font-size: 14px;
+                    color: #4eb63f;
+                }
+
+                ul {
+                    margin-top: 10px;
+
+                    > li {
+                        display: inline-block;
+
+                        button {
+                            margin-right: 10px;
+                            font-size: 13px;
+                        }
+                    }
+                }
+
+                @media (max-width: 767.98px) {
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .container-card {
+            grid-template-columns: 1fr;
+            justify-items: center;
+        }
+    }
+
+    .card-component {
+        @apply bg-white;
+        padding: 20px;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 10px;
+
+        hr {
+            border: 1px solid #d8d8d8;
+        }
+
+        .titulo-card {
+            font-weight: 700;
+
+            @apply text-lg;
+        }
+
+        a {
+            margin-left: auto;
+        }
+
+        .label-card {
+            @apply text-sm font-normal;
+            color: #737373;
+        }
+
+        .content-card {
+            @apply text-sm font-normal;
+            color: #222222;
+        }
+
+        .tab-buttons {
+            display: flex;
+
+            button {
+                font-size: 15px;
+                width: 290px;
+                max-width: 100%;
+                height: 40px;
+                background: #f4f5fb;
+                margin: 0 5px 0 0px;
+                font-weight: 700;
+                border-radius: 10px;
+
+                @media (min-width: 1300px) {
+                    width: 100%;
+                }
+
+                @media (max-width: 767.98px) {
+                    width: 100%;
+                    font-size: 12px;
+                }
+
+                svg {
+                    margin-right: 10px;
+
+                    path {
+                        stroke: #222;
+                    }
+                }
+
+                &.activeTab {
+                    background: #fef3f3;
+                    color: #ec0000;
+
+                    svg {
+                        path {
+                            stroke: #ec0000;
+                        }
+                    }
+                }
+            }
+        }
+
+        .tab-content {
+            @media (max-width: 767.98px) {
+                div {
+                    label {
+                        display: block;
+                        margin-bottom: 10px;
+                    }
+
+                    input,
+                    select {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.informacoes-component {
+    padding: 12px 0;
+    width: 100%;
+
+    @media (min-width: 1200px) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .user {
+        display: flex;
+        align-items: center;
+    }
+
+    .user-thumb {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        margin-right: 12px;
+        overflow: hidden;
+        position: relative;
+
+        &.user-thumb-image {
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &.user-thumb-initials {
+            background-color: #fbcccc;
+            color: #ec0000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .initials {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .user-info {
+        .user-name {
+            font-size: 15px;
+        }
+
+        .user-details {
+            font-size: 12px;
+            color: #737373;
+        }
+
+        .time {
+            margin-left: 5px;
+        }
+    }
+
+    .activity {
+        font-size: 14px;
+        color: #222;
+        white-space: nowrap;
+
+        @media (max-width: 767.98px) {
+            margin: 10px 0;
+        }
+    }
+}

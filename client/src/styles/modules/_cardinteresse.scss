@@ -1,0 +1,24 @@
+.interest-card {
+    .card-header {
+        p {
+            font-size: 15px;
+            color: #737373;
+
+            a {
+                svg {
+                    margin-top: -5px;
+                    margin-left: 2px;
+                }
+            }
+        }
+
+        button {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    }
+
+    hr {
+        border: 1px solid #d8d8d8;
+    }
+}

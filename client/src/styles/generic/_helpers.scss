@@ -1,0 +1,10 @@
+.disappear {
+    @apply hidden opacity-0 absolute top-0 left-0 h-0 w-0 invisible;
+    clip: rect(0px, 0px, 0px, 0px);
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}

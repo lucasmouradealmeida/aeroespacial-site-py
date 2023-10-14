@@ -1,0 +1,92 @@
+@import "../components/index";
+
+.heading-h1 {
+    @apply text-3xl font-bold ml-2;
+
+    @media (max-width: 767.98px) {
+        font-size: 20px;
+    }
+}
+
+.default-hr {
+    @apply w-full mt-6 mb-6 border-gray-500;
+}
+
+.select-box {
+    @media (min-width: 1200px) {
+        @apply ml-4;
+    }
+}
+
+.grupo-input-component {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+
+    input[type="radio"] {
+        margin: 0;
+    }
+
+    label {
+        font-weight: 400;
+        margin: 0 25px 0 5px;
+        font-size: 14px;
+    }
+}
+
+.main-content {
+    padding: 30px 0px 30px 0px;
+    margin-top: 0px;
+
+    .formulario-component {
+        width: 100%;
+        padding: 0 10px;
+
+        @media (min-width: 1200px) {
+            padding: 0 30px;
+        }
+
+        .box-branco {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 20px;
+
+            .titulo-pagina {
+                display: flex;
+                align-items: center;
+            }
+
+            input,
+            select {
+                border: 1px solid #d8d8d8;
+                border-radius: 5px;
+                height: 40px;
+                font-family: "Lato", sans-serif;
+                font-size: 14px;
+                padding: 10px;
+                background-color: transparent;
+            }
+
+            #myRadio,
+            .select-box {
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 5px;
+            }
+
+            input[type="radio"] {
+                width: 20px;
+                height: 20px;
+            }
+
+            .error-message {
+                margin-top: 20px;
+                background: #fcecd8;
+                padding: 10px;
+                color: #e88600;
+                border-radius: 10px;
+            }
+        }
+    }
+}

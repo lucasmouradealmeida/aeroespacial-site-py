@@ -1,0 +1,22 @@
+// Tailwind
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// É onde declaramos as configurações do nosso projeto, como variáveis de medidas, cores, etc.
+@import "settings";
+
+// Onde colocamos funções, mixins, placeholders, etc.
+@import "tools";
+
+// Camada para colocarmos seletores com a menor especificidade.
+@import "generic";
+
+// É onde declaramos conjuntos e estruturas de componentes coodependentes.
+@import "modules";
+
+// É onde estilizamos componentes específicos.
+@import "components";
+
+// É a camada com maior especificidade de acordo com a página. Permitindo criação de IDs
+@import "pages";

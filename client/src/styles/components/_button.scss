@@ -1,0 +1,138 @@
+@import "../components/parameters";
+
+.button {
+  @apply w-full
+        duration-200
+        cursor-pointer
+        text-base
+        font-medium
+        rounded-md
+        p-4
+       bg-primary
+        border-gray-200
+        text-white
+        select-none
+        pointer-events-auto;
+
+  &:active {
+    @apply translate-x-0 translate-y-0.5 duration-150;
+  }
+
+  &:disabled {
+    @apply cursor-not-allowed pointer-events-none;
+  }
+
+  &.color {
+    &\:primary {
+      @apply bg-primary;
+
+      &:hover {
+        @apply bg-primary-hover;
+      }
+
+      &:disabled {
+        @apply bg-red-100;
+      }
+    }
+
+    &\:secondary {
+      @apply bg-secondary;
+
+      &:hover {
+        @apply bg-secondary-hover;
+      }
+
+      &:disabled {
+        @apply bg-gray-200;
+      }
+    }
+  }
+
+  &.size {
+    &\:sm {
+      @apply py-2;
+    }
+    &\:lg {
+      @apply py-6;
+    }
+    &\:xl {
+      @apply py-8;
+    }
+  }
+}
+
+.btn-adicionarInteresse {
+  @apply bg-white text-center w-full rounded-xl p-4 text-sm font-bold;
+}
+
+.btn-importar {
+  height: 40px;
+  font-size: 14px;
+  background-color: #000000;
+  color: #ffffff;
+  font-weight: 700;
+  border: 0px;
+  border-radius: 10px;
+}
+
+.btn-red {
+  height: 44px;
+  font-size: 14px;
+  background-color: $red;
+  color: #ffffff;
+  font-weight: $bold;
+  font-family: $font-family;
+  font-size: $f15;
+  border: 0px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ffffff;
+    color: $red;
+    border: 1px solid $red;
+  }
+}
+
+.btn-visita {
+  border: 2px solid #000000;
+  color: #000000;
+  padding: 0 10px;
+  border-radius: 10px;
+  font-weight: 700;
+
+  &:hover {
+    background: #000000;
+    color: #ffffff;
+  }
+}
+
+.btn-red-white {
+  height: 44px;
+  border: 1px solid $red;
+  border-radius: 10px;
+  font-family: $font-family;
+  font-size: $f15;
+  color: $red;
+  font-weight: $bold;
+}
+
+.btn-black {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  font-size: 14px;
+  background-color: $black;
+  color: white;
+  font-weight: $bold;
+  border: 0px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.bnt-block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

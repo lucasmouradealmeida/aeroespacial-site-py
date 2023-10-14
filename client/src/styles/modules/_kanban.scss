@@ -1,0 +1,135 @@
+.kanban-container {
+    overflow-x: auto;
+    display: flex;
+    width: 100%;
+}
+
+.kanban {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    margin-top: 20px;
+}
+
+.column {
+    margin-right: 20px;
+    min-width: 300px;
+}
+
+.column-content {
+    overflow: unset !important;
+}
+
+.column-title-card0 {
+    background-color: white;
+    padding: 10px;
+    margin: 0 0 10px 0;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: Lato, sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.column-title-card1 {
+    background-color: white;
+    padding: 10px;
+    margin: 0 0 10px 0;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: Lato, sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.column-title-card2 {
+    background-color: white;
+    padding: 10px;
+    margin: 0 0 10px 0;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: Lato, sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.column-title-card3 {
+    background-color: white;
+    padding: 10px;
+    margin: 0 0 10px 0;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: Lato, sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.column-title-card4 {
+    background-color: white;
+    padding: 10px;
+    margin: 0 0 10px 0;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: Lato, sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.column-title-card5 {
+    background-color: white;
+    padding: 10px;
+    margin: 0 0 10px 0;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: Lato, sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.column-title-card6 {
+    background-color: white;
+    padding: 10px;
+    margin: 0 0 10px 0;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: Lato, sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.column-content {
+    min-height: 100px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.card {
+    background-color: white;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.elipse {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+    .column {
+        min-width: unset;
+    }
+}

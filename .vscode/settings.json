@@ -1,0 +1,21 @@
+{
+    "[python]": {
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.fixAll.ruff": true,
+        "source.organizeImports.ruff": true
+      },
+      "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "scss.lint.unknownAtRules": "ignore",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": false,
+      "source.fixAll.eslint": false
+    },
+    "[scss]": {
+      "editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter",
+      "editor.tabSize": 4
+    }
+  }
