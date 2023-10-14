@@ -10,6 +10,86 @@
 @import "tel";
 @import "filepond";
 
+.main{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: $black;
+    flex-direction: row;
+    overflow: auto;
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px 15px;
+    width: 250px;
+    border-radius: 25px;
+    background-color: $light-black;
+
+    .menu-item{
+        flex-direction: row;
+        align-items: center;
+
+        .icon{
+            width: 20%;
+            height: 21px;
+            fill: $black;
+        }
+    
+        .text{
+            margin-left: 10px;
+            font-family: $font-family;
+            font-size: 18px;
+            font-weight: $bold;
+            color: $black;
+        }
+    }
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+    .identification{
+        display: flex;
+        justify-content: flex-end;
+        font-family: $font-family;
+        font-size: $f60;
+        color: white;
+        width: 100%;
+        margin-top: 50px;
+        margin-bottom: 40px;
+        margin-right: 80px;
+    }
+
+    .field{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin-top: 30px;
+        .content-box{
+            display: flex;
+            width: 30%;
+            height: 250px;
+            background-color: $light-black;
+            border-radius: 30px;
+            margin-right: 25px;
+            cursor: pointer;
+        }
+    }
+}
+
+
+.content-box:hover {
+    transform: scale(1.02);
+}
+
+
+
 .main-content {
     display: flex;
     background-color: $gray;
