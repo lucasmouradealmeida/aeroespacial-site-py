@@ -9,12 +9,14 @@ COPY ./client /var/nodejs-temp
 
 RUN cd /var/nodejs-temp && \
     rm -Rf ./node_modules && \
-    npm install && \
+    npm install
+
+RUN cd /var/nodejs-temp && \
     NODE_ENV=production npm run build
 
 
 # ---- Python Image ----
-FROM python:3.11.6-slim-buster as app_release
+FROM python:3.11.6-slim-bookworm as app_release
 
 ARG USER
 ARG EXTRA_PKGS
@@ -64,6 +66,6 @@ RUN apt purge -y ${EXTRA_PKGS} && apt autoremove -y && \
 USER ${USER}
 WORKDIR /home/${USER}
 
-COPY --chown=${USER}:${USER} ./server ./server
 COPY --chown=${USER}:${USER} ./client/pages ./client/pages
+COPY --chown=${USER}:${USER} ./server ./server
 COPY --from=nodejs_builder --chown=${USER}:${USER} /var/nodejs-temp/public ./client/public

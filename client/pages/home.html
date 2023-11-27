@@ -1,25 +1,21 @@
 {% extends '/_document.html' %}
 
 {% block title %}
-{{ titulo }}
-{% endblock %} 
+    {{ titulo }}
+{% endblock %}
 
 {% block header %}
-{% include '/includes/sections/header/default.html' %}
+    {% include '/includes/sections/header/default.html' %}
 {% endblock %}
 
 {% block content %}
-{% include '/includes/layouts/home.html' %}
+    {% include '/includes/layouts/home.html' %}
 {% endblock %}
 
 {% block footer %}
-{% include '/includes/sections/footer/default.html' %}
+    {% include '/includes/sections/footer/default.html' %}
 {% endblock %}
 
 {% block pageScripts %}
-<script type="module" src="{{ url_for('static', filename='dist/home.js') }}"></script>
-{% endblock %}
-
-{% block pageStyles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='dist/home.css') }}" type="text/css" media="all" />
+    <script type="module" src="{{ url_for('static', filename='dist/page-home.js') }}"></script>
 {% endblock %}

@@ -7,6 +7,8 @@ from pydantic import BaseModel, ConfigDict, PrivateAttr
 
 from server.config import Settings, get_config
 from server.core.exceptions import ParceiroNotFoundError, UserNotFoundError
+from server.models.parceiro_model import Parceiro
+from server.models.pessoa_model import Pessoa
 
 model_config = ConfigDict(arbitrary_types_allowed=True)
 
@@ -16,6 +18,8 @@ class Context(BaseModel):
 
     model_config = model_config
 
+    _user: Union[Pessoa, None] = None
+    _parceiro: Union[Parceiro, None] = None
     _token: str = ""
     _internal_token: str = ""
     _is_request: bool = False
@@ -42,6 +46,18 @@ class Context(BaseModel):
         if not self.id_pessoa and self._user:
             self.id_pessoa = self._user.id_pessoa
 
+    @property
+    def parceiro(self) -> Parceiro:
+        """Dados do parceiro
+
+        Raises:
+            ParceiroNotFoundError: Quando parceiro não for encontrado.
+
+        Returns:
+            Parceiro: Dados do parceiro.
+        """
+
+        return
 
     @property
     def view(self) -> dict[str, Any]:
@@ -62,6 +78,45 @@ class Context(BaseModel):
         return get_config()
 
     @property
+    def token(self) -> str:
+        """Obter o Apê11 token.
+
+        Raises:
+            TokenRequiredError: É requerido o token para execução.
+
+        Returns:
+            str: Token.
+        """
+
+        return
+
+    @property
+    def internal_token(self) -> str:
+        """Obter o token interno.
+
+        Raises:
+            TokenRequiredError: É requerido o token para execução.
+
+        Returns:
+            str: Token.
+        """
+
+        return
+
+    @property
+    def token_parceiro(self) -> str:
+        """Obter o token do parceiro Apê11.
+
+        Raises:
+            TokenRequiredError: É requerido o token para execução.
+
+        Returns:
+            str: Token.
+        """
+
+        return
+
+    @property
     def is_logged(self) -> bool:
         """Usuario esta logado?
 
@@ -74,13 +129,36 @@ class Context(BaseModel):
             return False
 
     @property
+    def user(self) -> Pessoa:
+        """Obter dados do usuario.
+           O 'user' da execução contem os dados da pessoa na Apê11 obtida
+           através do token.
+
+        Raises:
+            UserNotFoundError: Quando usuario não for encontrado.
+
+        Returns:
+            Pessoa: Dados da pessoa.
+        """
+        if self._user:
+            return self._user
+
+        elif self.id_pessoa:
+            from server.services.pessoa_service import pessoa_service as pessoa_service
+
+            self._user = pessoa_service.obter_pessoa(self, self.id_pessoa)
+            return self._user
+        else:
+            raise UserNotFoundError("Usar o property 'is_logged' para verificar antes de obter o usuario!")
+
+    @property
     def scopes(self) -> list[str]:
         # if self._scopes:
         #     self._scopes = []
         return self._scopes
 
     @classmethod
-    def from_request(cls, r: Request, user: Optional[list] = None) -> Context:
+    def from_request(cls, r: Request, user: Optional[Pessoa] = None) -> Context:
         """Criar classe de contexto em cima dos dados da request.
 
         Args:
@@ -103,7 +181,7 @@ class Context(BaseModel):
     def from_background(
         cls,
         id_pessoa: Optional[int] = None,
-        user: Optional[list] = None,
+        user: Optional[Pessoa] = None,
     ) -> Context:
         """Criar classe de contexto de backend.
 

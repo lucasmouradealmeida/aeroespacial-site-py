@@ -5,6 +5,7 @@ from flask_session import Session
 from flask_wtf.csrf import CSRFProtect
 
 from server.config import get_config
+from server.core import redis
 from server.registers import commands, routes
 
 
@@ -22,17 +23,28 @@ def create_app() -> Flask:
 
     # Configuração do Flask-Session
     app.config["SESSION_TYPE"] = config.SESSION_TYPE
+    host, port, db = redis.uri_to_conn(config.SESSION_URL)
+    app.config["SESSION_REDIS"] = redis.create_conn(host=host, port=port, db=db)
     app.config["SESSION_PERMANENT"] = config.SESSION_PERMANENT
     app.config["PERMANENT_SESSION_LIFETIME"] = config.SESSION_LIFETIME
     app.config["SESSION_REFRESH_EACH_REQUEST"] = config.SESSION_REFRESH_REQUEST
     app.config["SESSION_REFRESH_EACH_SECONDS"] = config.SESSION_REFRESH_SECONDS
     app.config["SESSION_USE_SIGNER"] = config.SESSION_USE_SIGNER
     app.config["SESSION_COOKIE_NAME"] = config.SESSION_COOKIE_NAME
+    app.config["SESSION_COOKIE_SECURE"] = config.SESSION_COOKIE_SECURE
+    app.config["SESSION_COOKIE_HTTPONLY"] = config.SESSION_COOKIE_HTTPONLY
 
     @app.errorhandler(HTTPStatus.NOT_FOUND)
     def not_found(e):
         flash(config.PAGE_NOT_FOUND_MESSAGE, "error")
         return redirect(url_for(config.PAGE_NOT_FOUND_REDIRECT))
+
+    # @app.before_request
+    # def gather_request_data():
+    #     print(f"{request.method=}")
+    #     print(f"{request.url=}")
+    #     print(f"{request.headers=}")
+    #     print(f"{request.form=}")
 
     routes.init_app(app)
     commands.init_app(app)

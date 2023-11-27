@@ -1,0 +1,131 @@
+<section class="bg-red">
+    <div class="p-4">
+        <!-- Navbar Container -->
+        <div class="flex w-full items-center justify-between px-4 lg:px-0">
+            <!-- Logo -->
+            <div>
+                <img src="{{ url_for('static', filename='img/logo-crmparceiro.svg') }}" alt="Logo" />
+            </div>
+
+            <!-- Direita - Botão, Foto do usuário, Nome/Role e ícones -->
+            <div class="lg:space-x-7.5 flex items-center">
+                <!-- Botão "Ver meu site" -->
+                <button
+                    class="mr-7 hidden rounded-full bg-white px-4 py-2 text-sm font-bold text-primary lg:inline-block">
+                    Ver meu site
+                </button>
+
+                <!-- Foto do usuário -->
+                <div class="mr-3 hidden h-8 w-8 rounded-full bg-grayBgLight lg:inline-block"></div>
+
+                <!-- Nome e Role -->
+                <div class="mr-7 hidden text-white lg:inline-block">
+                    <div class="font-bold">Igor</div>
+                    <div class="text-xs">Administrador</div>
+                </div>
+
+                <!-- Ícone 1 -->
+                <div class="mr-4 hidden h-6 w-6 rounded lg:inline-block">
+                    <button id="btn-notificacao">
+                        <svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M19.1708 13.868C18.857 13.5557 18.6082 13.1843 18.4387 12.7753C18.2693 12.3663 18.1827 11.9277 18.1838 11.485V8.71201C18.1838 6.54227 17.3219 4.4614 15.7876 2.92717C14.2534 1.39293 12.1725 0.531006 10.0028 0.531006C7.83305 0.531006 5.75218 1.39293 4.21794 2.92717C2.68371 4.4614 1.82178 6.54227 1.82178 8.71201V11.485C1.82289 11.9277 1.73624 12.3663 1.56682 12.7753C1.39741 13.1843 1.1486 13.5557 0.834784 13.868C0.438107 14.2647 0.16795 14.7701 0.0584617 15.3203C-0.0510262 15.8705 0.0050713 16.4409 0.219663 16.9592C0.434255 17.4775 0.797706 17.9206 1.26407 18.2324C1.73044 18.5442 2.27878 18.7108 2.83978 18.711H5.54778C5.75651 19.7383 6.31395 20.6619 7.12567 21.3253C7.93739 21.9887 8.95347 22.3511 10.0018 22.3511C11.0501 22.3511 12.0662 21.9887 12.8779 21.3253C13.6896 20.6619 14.2471 19.7383 14.4558 18.711H17.1648C17.7259 18.711 18.2744 18.5446 18.7409 18.2328C19.2074 17.9211 19.571 17.478 19.7857 16.9597C20.0004 16.4413 20.0566 15.8709 19.9472 15.3206C19.8377 14.7703 19.5675 14.2648 19.1708 13.868ZM10.0028 20.531C9.44074 20.5287 8.89313 20.3528 8.43488 20.0274C7.97663 19.702 7.63013 19.2429 7.44278 18.713H12.5628C12.3754 19.2429 12.0289 19.702 11.5707 20.0274C11.1124 20.3528 10.5648 20.5287 10.0028 20.531ZM17.1648 16.895H2.83978C2.63811 16.8952 2.44092 16.8355 2.27318 16.7236C2.10544 16.6116 1.97469 16.4524 1.89748 16.2661C1.82028 16.0798 1.8001 15.8747 1.8395 15.677C1.87889 15.4792 1.97609 15.2975 2.11878 15.155C2.60211 14.6743 2.9853 14.1025 3.24621 13.4727C3.50711 12.8429 3.64055 12.1677 3.63878 11.486V8.71201C3.63878 7.8764 3.80337 7.04899 4.12314 6.27699C4.44291 5.505 4.9116 4.80354 5.50246 4.21269C6.09332 3.62183 6.79477 3.15313 7.56677 2.83336C8.33876 2.51359 9.16618 2.34901 10.0018 2.34901C10.8374 2.34901 11.6648 2.51359 12.4368 2.83336C13.2088 3.15313 13.9102 3.62183 14.5011 4.21269C15.092 4.80354 15.5607 5.505 15.8804 6.27699C16.2002 7.04899 16.3648 7.8764 16.3648 8.71201V11.485C16.363 12.1667 16.4965 12.8419 16.7574 13.4717C17.0183 14.1015 17.4015 14.6733 17.8848 15.154C18.0275 15.2965 18.1247 15.4782 18.1641 15.676C18.2035 15.8737 18.1833 16.0788 18.1061 16.2651C18.0289 16.4514 17.8981 16.6106 17.7304 16.7226C17.5626 16.8345 17.3655 16.8942 17.1638 16.894L17.1648 16.895Z"
+                                fill="white" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Ícone 2 -->
+                <div class="mr-4 hidden h-6 w-6 rounded lg:inline-block">
+                    <a href="">
+                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 10.5C0 8.52219 0.58649 6.58879 1.6853 4.9443C2.78412 3.29981 4.3459 2.01809 6.17317 1.26121C8.00043 0.504333 10.0111 0.306299 11.9509 0.692152C13.8907 1.078 15.6725 2.03041 17.0711 3.42894C18.4696 4.82746 19.422 6.60929 19.8079 8.5491C20.1937 10.4889 19.9957 12.4996 19.2388 14.3268C18.4819 16.1541 17.2002 17.7159 15.5557 18.8147C13.9112 19.9135 11.9778 20.5 10 20.5C7.34848 20.4979 4.80618 19.4436 2.93127 17.5687C1.05637 15.6938 0.00211867 13.1515 0 10.5ZM1.667 10.5C1.667 12.1481 2.15572 13.7592 3.07136 15.1296C3.98701 16.4999 5.28844 17.568 6.8111 18.1987C8.33376 18.8294 10.0092 18.9944 11.6257 18.6729C13.2421 18.3514 14.7269 17.5577 15.8923 16.3923C17.0577 15.2269 17.8514 13.7421 18.1729 12.1257C18.4944 10.5092 18.3294 8.83376 17.6987 7.3111C17.068 5.78845 15.9999 4.48701 14.6296 3.57137C13.2592 2.65573 11.6481 2.167 10 2.167C7.79028 2.16806 5.67136 3.04634 4.10885 4.60885C2.54634 6.17137 1.66806 8.29028 1.667 10.5ZM9.65 16.26C9.54693 16.264 9.4441 16.2474 9.34751 16.2112C9.25093 16.175 9.16253 16.1199 9.08748 16.0492C9.01243 15.9784 8.95225 15.8934 8.91044 15.7991C8.86864 15.7048 8.84605 15.6031 8.844 15.5V15.319C8.85104 15.1035 8.93999 14.8988 9.09272 14.7466C9.24546 14.5945 9.45048 14.5063 9.666 14.5H9.682C9.78562 14.4979 9.88864 14.5162 9.98518 14.5539C10.0817 14.5916 10.1699 14.648 10.2446 14.7197C10.3194 14.7915 10.3793 14.8773 10.4209 14.9723C10.4624 15.0672 10.4849 15.1694 10.487 15.273V15.405C10.4819 15.6245 10.3946 15.834 10.2424 15.9921C10.0901 16.1503 9.8841 16.2455 9.665 16.259L9.65 16.26ZM8.833 12.85L8.849 10.286C8.84813 10.1678 8.87268 10.0509 8.92099 9.94304C8.9693 9.8352 9.04024 9.73901 9.129 9.66101C9.21547 9.58399 9.31738 9.52632 9.42792 9.49183C9.53845 9.45734 9.65508 9.44683 9.77 9.46101C10.1593 9.49358 10.5472 9.38368 10.8615 9.15174C11.1759 8.9198 11.3953 8.58159 11.479 8.2C11.5349 7.81095 11.4497 7.41473 11.2387 7.08308C11.0278 6.75143 10.7051 6.50628 10.329 6.392C9.94287 6.31827 9.5431 6.38329 9.20024 6.57558C8.85737 6.76787 8.59344 7.07508 8.455 7.443C8.38851 7.65163 8.24246 7.82563 8.04852 7.92728C7.85459 8.02893 7.62839 8.05003 7.419 7.986C7.31554 7.95387 7.21959 7.9013 7.1368 7.83142C7.05402 7.76154 6.9861 7.67576 6.93706 7.57917C6.88801 7.48257 6.85884 7.37712 6.85128 7.26905C6.84371 7.16098 6.8579 7.05249 6.893 6.95C7.15327 6.18546 7.68606 5.54358 8.38961 5.14699C9.09315 4.75039 9.91815 4.62686 10.707 4.8C11.4894 5.01184 12.1665 5.50425 12.6092 6.18333C13.0518 6.8624 13.229 7.68064 13.107 8.482C12.9732 9.1215 12.6538 9.70737 12.1889 10.1664C11.724 10.6255 11.1341 10.9373 10.493 11.063L10.477 12.855C10.477 13.073 10.3904 13.2821 10.2362 13.4362C10.0821 13.5904 9.87301 13.677 9.655 13.677C9.43699 13.677 9.22791 13.5904 9.07376 13.4362C8.9196 13.2821 8.833 13.073 8.833 12.855V12.85Z"
+                                fill="white" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="hidden h-6 w-6 rounded lg:inline-block">
+                    <a href="/logout">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M7 19H3C2.46957 19 1.96086 18.7893 1.58579 18.4142C1.21071 18.0391 1 17.5304 1 17V3C1 2.46957 1.21071 1.96086 1.58579 1.58579C1.96086 1.21071 2.46957 1 3 1H7"
+                                stroke="white"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M14 15L19 10L14 5"
+                                stroke="white"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M19 10H7"
+                                stroke="white"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Ícone de menu para dispositivos menores -->
+                <div class="lg:hidden">
+                    <button id="menuToggle">
+                        <!-- Representação básica de um ícone de hamburger -->
+                        <div class="my-1 h-1 w-6 bg-white"></div>
+                        <div class="my-1 h-1 w-6 bg-white"></div>
+                        <div class="my-1 h-1 w-6 bg-white"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dropdown Menu para telas menores -->
+        <div id="dropdownMenu" class="bg-blue-600 mt-2 hidden p-4 lg:hidden">
+            <button class="text-blue-500 mb-4 block w-full rounded bg-white px-4 py-2">Ver meu site</button>
+            <div class="space-x-7.5 mb-4 flex items-center">
+                <!-- Foto do usuário -->
+                <div class="mr-7.5 h-8 w-8 rounded-full bg-grayBgLight"></div>
+                <!-- Nome e Role -->
+                <div class="text-white">
+                    <div>Igor</div>
+                    <div class="text-sm">Admin</div>
+                </div>
+            </div>
+            <!-- Você pode adicionar ícones aqui também, se desejar -->
+        </div>
+
+        <div id="box-notificacao" class="hidden"></div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    const menuToggle = document.getElementById('menuToggle')
+    const dropdownMenu = document.getElementById('dropdownMenu')
+
+    menuToggle.addEventListener('click', function () {
+        dropdownMenu.classList.toggle('hidden')
+    })
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const btnNotificacao = document.getElementById('btn-notificacao')
+        const boxNotificacao = document.getElementById('box-notificacao')
+
+        btnNotificacao.addEventListener('click', function () {
+            if (boxNotificacao.style.display === 'none' || boxNotificacao.style.display === '') {
+                boxNotificacao.style.display = 'block'
+            } else {
+                boxNotificacao.style.display = 'none'
+            }
+        })
+
+        document.addEventListener('click', function (event) {
+            if (!btnNotificacao.contains(event.target) && !boxNotificacao.contains(event.target)) {
+                boxNotificacao.style.display = 'none'
+            }
+        })
+    })
+</script>

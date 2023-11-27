@@ -1,1 +1,2 @@
-export { legacy } from './legacy'
+export { oldTokens } from './remover'
+export { theme } from './theme'

@@ -1,0 +1,5 @@
+function checkFilters(){
+    const filters = {};
+
+    
+}

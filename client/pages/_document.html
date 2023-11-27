@@ -1,36 +1,41 @@
 <!doctype html>
 <html lang="pt-BR">
+    <head>
+        {% include '/includes/modules/metatags.html' %}
+        {% if not ctx.config.IS_DEV_MODE %}
+            <link
+                rel="stylesheet"
+                href="{{ url_for('static', filename='dist/global.css') }}"
+                type="text/css"
+                media="all" />
+            {% block pageStyles %}{% endblock %}
+        {% endif %}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+            rel="stylesheet" />
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+        <meta name="session" content="{{ csrf_token() }}" />
+        <title>{% block title %}{% endblock %}</title>
+        <script>
+            document.cookie = "csrf_token={{ csrf_token() }}; samesite=lax";
+        </script>
+    </head>
 
-<head>
-    {% include '/includes/modules/metatags.html' %}
-    {% if not ctx.config.IS_DEV_MODE %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='dist/global.css') }}" type="text/css" media="all" />
-    {% block pageStyles %}{% endblock %}
-    {% endif %}
-    <!-- Fake favicon, to avoid extra request to server -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
-    <title>{% block title %}{% endblock %}</title>
-</head>
+    <body>
+        {% block header %}{% endblock %}
+        {% block content %}
+        {% endblock %}
+        {% block footer %}
+        {% endblock %}
 
-<body>
-    {% block header %}{% endblock %}
-    {% block content %}
-    {% endblock %}
-    {% block footer %}
-    {% endblock %}
-
-    {% if ctx.config.IS_DEV_MODE %}
-    <script type="module" src="http://localhost:3000/hrm.dev.js"></script>
-    {% else %}
-    <!-- <script type="module" src="{{ url_for('static', filename='dist/_plugin-vue_export-helper.js') }}"></script> -->
-    <script type="module" src="{{ url_for('static', filename='dist/vendor.js') }}"></script>
-    <script type="module" src="{{ url_for('static', filename='dist/global.js') }}"></script>
-    {% block pageScripts %}{% endblock %}
-    {% endif %}
-    {% include '/includes/modules/analitcs.html' %}
-</body>
-
+        {% if ctx.config.IS_DEV_MODE %}
+            <script type="module" src="http://localhost:3000/hrm.dev.js"></script>
+        {% else %}
+            <script type="module" src="{{ url_for('static', filename='dist/global.js') }}"></script>
+            {% block pageScripts %}{% endblock %}
+        {% endif %}
+        {% include '/includes/modules/analitcs.html' %}
+    </body>
 </html>

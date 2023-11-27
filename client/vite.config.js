@@ -32,6 +32,7 @@ export default defineConfig({
       '@styles': path.css
     }
   },
+  important: true,
   publicDir: 'static',
   build: {
     outDir: path.output,
@@ -45,6 +46,14 @@ export default defineConfig({
         entryFileNames: `[name].js`,
         chunkFileNames: `[name].js`,
         assetFileNames: `[name].[ext]`
+      },
+      onwarn(warning, rollupWarn) {
+        if (warning.code === 'UNRESOLVED_IMPORT' && warning.source) {
+          if (warning.source.startsWith('/static/')) {
+            return
+          }
+        }
+        rollupWarn(warning)
       }
     }
   },
@@ -53,7 +62,7 @@ export default defineConfig({
     strictPort: true,
     port: 3000,
     https: false,
-    open: 'http://localhost:5000'
+    open: 'http://localhost:5000/'
   },
   test: {
     exclude: ['**/node_modules/**', '**/public/**'],

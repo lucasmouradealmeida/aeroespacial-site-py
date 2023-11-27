@@ -31,11 +31,7 @@ class BaseModel(PydanticBaseModel):
         Returns:
             list[str]: Lista de atributos
         """
-        return [
-            x
-            for x in dir(self.__class__)
-            if isinstance(getattr(self.__class__, x), property)
-        ]
+        return [x for x in dir(self.__class__) if isinstance(getattr(self.__class__, x), property)]
 
     def dict(self, *args, **kwargs) -> t.Dict[str, t.Any]:
         """Metodo Pydantic.BaseModel.dict.
@@ -73,9 +69,7 @@ class BaseModel(PydanticBaseModel):
         return self.dict(*args, **kwargs)
 
     @classmethod
-    def from_dict(
-        cls: t.Type[M], d: t.Dict[str, t.Any], to_snakecase: bool = False
-    ) -> M:
+    def from_dict(cls: t.Type[M], d: t.Dict[str, t.Any], to_snakecase: bool = False) -> M:
         """Criar Classe a partir de um dicionario.
 
         Args:
@@ -87,9 +81,7 @@ class BaseModel(PydanticBaseModel):
         return to_class(class_=cls, dict_=d, to_snakecase=to_snakecase)
 
     @classmethod
-    def from_dicts(
-        cls: t.Type[M], ld: t.List[t.Dict[str, t.Any]], to_snakecase: bool = False
-    ) -> t.List[M]:
+    def from_collection(cls: t.Type[M], ld: t.List[t.Dict[str, t.Any]], to_snakecase: bool = False) -> t.List[M]:
         """Criar Classe a partir de um dicionario.
 
         Args:

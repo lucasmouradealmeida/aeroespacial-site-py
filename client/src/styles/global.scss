@@ -12,11 +12,11 @@
 // Camada para colocarmos seletores com a menor especificidade.
 @import "generic";
 
-// É onde declaramos conjuntos e estruturas de componentes coodependentes.
-@import "modules";
-
 // É onde estilizamos componentes específicos.
 @import "components";
+
+// É onde declaramos conjuntos e estruturas de componentes coodependentes.
+@import "modules";
 
 // É a camada com maior especificidade de acordo com a página. Permitindo criação de IDs
 @import "pages";

@@ -1,37 +1,58 @@
 import base64
+from datetime import datetime, timedelta
 from functools import wraps
 from http import HTTPStatus
 from typing import Callable, Optional, Union
-from datetime import datetime, timedelta
-from pydash import _ as py_
 
-from flask import Response, make_response, redirect, render_template, request, url_for, session
+from flask import (
+    Response,
+    make_response,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
+from pydash import _ as py_
 
 from server.config import get_config
 from server.core import logging
 from server.core.context import Context
+from server.services.token_service import token_service
+
+
+def autenticador(ctx: Context, email: Union[str, None], senha: Union[str, None]) -> str:
+    try:
+        # token = token_service.login(
+        #     ctx,
+        #     username=email,
+        #     password=base64.b64encode(bytes(senha, "utf-8")).decode("utf-8"),
+        # )
+        return
+    except Exception as error:
+        logging.get_logger(__name__).warning(error, exc_info=True)
+        return None
 
 
 def is_logged(ctx: Context, template) -> bool:
-    return True
-    # permitted = ["home", "login"]
-    # if ctx.is_logged:
-    #     return True
-    # else:
-    #     for item in permitted:
-    #         if item in template:
-    #             return True
-    # return False
+    permitted = ["index", "login"]
+    if ctx.is_logged:
+        return True
+    else:
+        for item in permitted:
+            if item in template:
+                return True
+    return False
 
 
 def check_session_expiry() -> bool:
-    expire_at = session.get('expire_at')
+    expire_at = session.get("expire_at")
     if expire_at and datetime.now() >= expire_at:
         # A sessão expirou
         return True
     else:
         # Faz o refresh da sessão e extende o periodo por mais 30 minutos
-        session['expire_at'] = datetime.now() + timedelta(seconds=1800)
+        session["expire_at"] = datetime.now() + timedelta(seconds=1800)
         return False
 
 
@@ -57,9 +78,7 @@ def with_context(
             if scope and has_permission(scope, ctx.scopes) is False:
                 if template:
                     config = get_config()
-                    return redirect(
-                        url_for(redirect_for or config.PAGE_NOT_PERMISSION_REDIRECT)
-                    )
+                    return redirect(url_for(redirect_for or config.PAGE_NOT_PERMISSION_REDIRECT))
                 else:
                     return Response(status=HTTPStatus.FORBIDDEN)
             res = f(ctx, *args, **kwargs)

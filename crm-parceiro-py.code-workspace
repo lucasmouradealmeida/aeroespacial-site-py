@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": ".",
+			"name": "Project"
+		},
+		{
+			"path": "client",
+			"name": "Client"
+		}
+	],
+	"settings": {},
+	"extensions": {
+		"recommendations": []
+	}
+}

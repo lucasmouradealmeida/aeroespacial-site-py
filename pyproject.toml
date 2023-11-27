@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "aeroespacial-site"
+name = "crm-parceiro"
 version = "0.1.0"
 description = "Site white-label em Python."
 authors = ["Douglas Panhota <douglas.panhota@ape11.com.br>"]
@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{ include = "server" }]
 
 [tool.poetry.dependencies]
-python = "^3.11,<3.12"
+python = "^3.11.5,<3.12"
 flask = "^2.3.2"
 pydash = "^7.0.5"
 pydantic = "^2.0.3"
@@ -16,7 +16,9 @@ ipython = "^8.14.0"
 gunicorn = "^21.2.0"
 python-dotenv = "^1.0.0"
 pydantic-settings = "^2.0.2"
+boto3 = "^1.28.10"
 rich = "^13.5.2"
+celery = {extras = ["redis"], version = "^5.3.1"}
 redis = {extras = ["hiredis"], version = "^5.0.0"}
 flask-wtf = "^1.1.1"
 flask-mail = "^0.9.1"
@@ -35,13 +37,14 @@ types-requests = "^2.31.0.2"
 watchdog = {extras = ["watchmedo"], version = "^3.0.0"}
 flower = "^2.0.1"
 ipykernel = "^6.25.2"
+python-dotenv = "^1.0.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.11"
 plugins = ["pydantic.mypy"]
 disallow_untyped_defs = false
 warn_no_return = true
@@ -80,12 +83,12 @@ exclude = [
     "venv",
     "migrations",
 ]
-line-length = 88
+line-length = 120
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
-target-version = "py39"
+target-version = "py311"
 
 [tool.black]
-line-length = 88
+line-length = 120
 
 [tool.ruff.mccabe]
 max-complexity = 10

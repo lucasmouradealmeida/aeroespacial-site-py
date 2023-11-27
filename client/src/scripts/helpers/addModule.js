@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { default as store } from '@/build/global'
+import store from '@/store'
 import { hasElement } from '@/helpers'
 
 const addModule = (ref, Module) => {

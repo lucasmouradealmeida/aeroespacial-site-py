@@ -1,0 +1,37 @@
+.modal {
+  background-color: $overflow;
+  backdrop-filter: blur(0.3rem);
+  @apply flex items-center fixed top-0 left-0 right-0 z-50  w-full pt-40 md:p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen max-h-full;
+
+  &-overlay {
+    @apply fixed w-full max-h-full flex justify-center;
+  }
+
+  &-close-outsite {
+    @apply fixed w-full h-full block left-0 top-0 cursor-pointer;
+  }
+
+  &-wrapper {
+    @apply container flex flex-col justify-evenly items-stretch relative mx-auto;
+
+    &.size {
+      &\:sm {
+        @apply max-w-screen-sm;
+      }
+      &\:md {
+        @apply max-w-screen-md;
+      }
+      &\:lg {
+        @apply max-w-screen-lg;
+      }
+    }
+  }
+
+  &-topBar {
+    @apply flex bg-white justify-end p-4 rounded-t-2xl;
+  }
+
+  &-content {
+    @apply px-28 pt-8 pb-24 space-y-6 bg-white rounded-b-2xl text-justify break-words;
+  }
+}

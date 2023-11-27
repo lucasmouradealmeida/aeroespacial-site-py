@@ -1,0 +1,26 @@
+.header {
+  @apply py-8 border-b border-grayLight justify-center;
+}
+
+#box-notificacao {
+  position: absolute;
+  top: 70px;
+  right: 10px;
+  width: 445px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: none;
+  padding: 15px;
+  border-radius: 8px;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    right: 84px;
+    border-width: 15px;
+    border-style: solid;
+    border-color: transparent transparent #ffffff transparent;
+  }
+}

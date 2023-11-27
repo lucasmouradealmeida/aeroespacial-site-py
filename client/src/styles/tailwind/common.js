@@ -6,13 +6,17 @@ export const defaultTokens = {
     center: true
   },
   extend: {
+    fontSize: {
+      base: ['16px']
+    },
     borderRadius: {
       xs: '3px'
     },
     fontFamily: {
-      open: ['"Open Sans"', ...defaultTheme.fontFamily.sans]
+      open: ['"Lato Sans"', ...defaultTheme.fontFamily.sans]
     },
     transitionProperty: {
+      height: 'height',
       button: 'background, color, border-color, box-shadow, transform, opacity'
     },
     animation: {
@@ -28,7 +32,21 @@ export const defaultTokens = {
         '100%': { opacity: 1 },
         '0%': { opacity: 0 }
       }
-    })
+    }),
+    breakpoints: {
+      xs: '650px',
+      sm: '960px',
+      md: '1280px',
+      lg: '1400px',
+      xl: '1920px'
+    },
+    container: {
+      xs: '650px',
+      sm: '960px',
+      md: '1280px',
+      lg: '1400px',
+      xl: '1920px'
+    }
   },
   variants: {
     color: ['primary', 'secondary'],

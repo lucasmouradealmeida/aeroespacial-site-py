@@ -7,6 +7,6 @@ bp = Blueprint("home", __name__)
 
 
 @bp.route("/", methods=["GET"], endpoint="home")
-@with_context(template="./home.html")
+@with_context(template="./login.html")
 def home_controller(ctx: Context):
-    return {"titulo": "Home"}
+    return {"titulo": "Login"}

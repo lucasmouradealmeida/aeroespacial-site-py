@@ -1,2 +1,5 @@
 export { default as hasElement } from './hasElement'
 export { default as addModule } from './addModule'
+export { default as toggleClass } from './toggleClass'
+export * from './getTailwindColor'
+export * from './formatDate'

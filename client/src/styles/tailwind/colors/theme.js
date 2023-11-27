@@ -1,0 +1,22 @@
+export const theme = {
+  primary: '#ED1C24',
+  primaryHover: '#F14950',
+  primaryLight: '#ffbfbf',
+  orangeTermometer: '#E84700',
+  secondary: '#222222',
+  secondaryHover: '#424242',
+  yellowTermometer: '#EBAB2F',
+  red: '#ec0000',
+  success: '#25D366',
+  textBase: '#222222',
+  black: '#222',
+  white: '#FFF',
+  blueMetro: '#165C98',
+  blue: '#2A6BFD',
+  blueTermometer: '#1DB1FF',
+  blueLight: '#D4EBFC',
+  grayLight: '#AFAFAF',
+  grayBorderLight: '#D8D8D8',
+  grayBorder: '#737373',
+  grayBgLight: '#F4F5FB'
+}
