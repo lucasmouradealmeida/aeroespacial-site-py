@@ -1,10 +1,14 @@
 <template>
-    <div>
-        <h1>Home</h1>
+    <div class="main">
+        <header>
+            <div class="menu">
+
+            </div>
+        </header>
+
     </div>
 </template>
 <script>
-
 
 export default {
     name: "Home",
@@ -18,3 +22,8 @@ export default {
     },
 }
 </script>
+<style>
+
+
+
+</style>
