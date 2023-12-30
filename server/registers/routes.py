@@ -14,11 +14,9 @@ def init_app(app: Flask):
     try:
         from server.controllers import (
             home_controller,
-            login_controller,
         )
 
         app.register_blueprint(home_controller.bp)
-        app.register_blueprint(login_controller.bp)
 
     except Exception as err:
         logger.error(err, exc_info=True)

@@ -18,42 +18,6 @@ from pydash import _ as py_
 from server.config import get_config
 from server.core import logging
 from server.core.context import Context
-from server.services.token_service import token_service
-
-
-def autenticador(ctx: Context, email: Union[str, None], senha: Union[str, None]) -> str:
-    try:
-        # token = token_service.login(
-        #     ctx,
-        #     username=email,
-        #     password=base64.b64encode(bytes(senha, "utf-8")).decode("utf-8"),
-        # )
-        return
-    except Exception as error:
-        logging.get_logger(__name__).warning(error, exc_info=True)
-        return None
-
-
-def is_logged(ctx: Context, template) -> bool:
-    permitted = ["index", "login"]
-    if ctx.is_logged:
-        return True
-    else:
-        for item in permitted:
-            if item in template:
-                return True
-    return False
-
-
-def check_session_expiry() -> bool:
-    expire_at = session.get("expire_at")
-    if expire_at and datetime.now() >= expire_at:
-        # A sessão expirou
-        return True
-    else:
-        # Faz o refresh da sessão e extende o periodo por mais 30 minutos
-        session["expire_at"] = datetime.now() + timedelta(seconds=1800)
-        return False
 
 
 def has_permission(scope: Union[Callable, str], user_scopes: list[str]) -> bool:
@@ -83,12 +47,6 @@ def with_context(
                     return Response(status=HTTPStatus.FORBIDDEN)
             res = f(ctx, *args, **kwargs)
             if template:
-                # Verifica o tempo da sessão do login
-                if check_session_expiry():
-                    session.clear()
-                # Verifica se usuário tem permissão de acesso
-                if is_logged(ctx, template) is False:
-                    return redirect(url_for("home.home"))
                 # Redireciona para outra página (uso do redirect)
                 if py_.get(res, "location", None):
                     return redirect(res.location)

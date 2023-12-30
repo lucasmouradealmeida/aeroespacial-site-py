@@ -39,13 +39,6 @@ def create_app() -> Flask:
         flash(config.PAGE_NOT_FOUND_MESSAGE, "error")
         return redirect(url_for(config.PAGE_NOT_FOUND_REDIRECT))
 
-    # @app.before_request
-    # def gather_request_data():
-    #     print(f"{request.method=}")
-    #     print(f"{request.url=}")
-    #     print(f"{request.headers=}")
-    #     print(f"{request.form=}")
-
     routes.init_app(app)
     commands.init_app(app)
     csrf.init_app(app)

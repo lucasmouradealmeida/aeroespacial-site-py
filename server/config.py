@@ -22,7 +22,7 @@ AMBIENTE = str(os.getenv("AMBIENTE")).lower()
 
 class Settings(BaseSettings):
     # APP
-    APP_NAME: str = "crm_parceiro"
+    APP_NAME: str = "aeroespacial"
     APP_VERSION: str = "v1.0.0"
     APP_DOMAIN: str = "portal"
 
@@ -49,9 +49,9 @@ class Settings(BaseSettings):
     SESSION_SECRET: str = os.getenv(
         "SESSION_SECRET", "47a9d370f17f69a542227d02a7ce8e2c9114168cfddc17eae7bc807818e2e58e"
     )
-    PAGE_NOT_FOUND_REDIRECT: str = "dashboard.dashboard"
+    PAGE_NOT_FOUND_REDIRECT: str = "home.home"
     PAGE_NOT_FOUND_MESSAGE: str = "Pagina não encontrada!"
-    PAGE_NOT_PERMISSION_REDIRECT: str = "dashboard.dashboard"
+    PAGE_NOT_PERMISSION_REDIRECT: str = "home.home"
 
 
   
@@ -106,7 +106,7 @@ class Settings(BaseSettings):
     SESSION_REFRESH_REQUEST: bool = True  # Atualiza a sessão a cada solicitação para estender o tempo de inatividade
     SESSION_REFRESH_SECONDS: int = 1800  # Tempo de atualização personalizado em segundos (30 minutos)
     SESSION_USE_SIGNER: bool = True  # Usar assinatura de sessão para segurança
-    SESSION_COOKIE_NAME: str = "crmparceiro"  # Nome da sessão para segurança
+    SESSION_COOKIE_NAME: str = "aeroespacial"  # Nome da sessão para segurança
 
     if IS_DEV_MODE:
         SESSION_COOKIE_SECURE: bool = False
