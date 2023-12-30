@@ -13,7 +13,7 @@ export const defaultTokens = {
       xs: '3px'
     },
     fontFamily: {
-      open: ['"Lato Sans"', ...defaultTheme.fontFamily.sans]
+      open: ['"Oxanium"', ...defaultTheme.fontFamily.sans]
     },
     transitionProperty: {
       height: 'height',

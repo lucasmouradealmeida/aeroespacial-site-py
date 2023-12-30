@@ -35,7 +35,7 @@ export default {
         xs: '3px'
       },
       fontFamily: {
-        open: ['"Lato Sans"', ...defaultTheme.fontFamily.sans]
+        open: ['"Oxanium"', ...defaultTheme.fontFamily.sans]
       },
       transitionProperty: {
         button: 'background, color, border-color, box-shadow, transform, opacity'
