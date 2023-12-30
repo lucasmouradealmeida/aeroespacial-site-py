@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "crm-parceiro"
+name = "aeroespacial"
 version = "0.1.0"
 description = "Site white-label em Python."
 authors = ["Douglas Panhota <douglas.panhota@ape11.com.br>"]
