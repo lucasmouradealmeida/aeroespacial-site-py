@@ -32,5 +32,5 @@ services:
       name: aeroespacial-static-volume
     plan: starter
   - name: aeroespacial-redis-service
-    type: cache
+    type: web
     plan: small
