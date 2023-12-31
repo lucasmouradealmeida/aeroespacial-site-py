@@ -13,11 +13,11 @@ services:
         value: redis://aeroespacial-redis-service:6379/1
       - key: APP_CACHE_URL
         value: redis://aeroespacial-redis-service:6379/2
-    startCommand: echo "Web service starting..."
+    startCommand: echo "Web service starting..." # Adicione um comando de inicialização válido
     disk:
       name: aeroespacial-static-volume
-      mountPath: /path/on/disk
-    runtime: python
+      mountPath: /path/on/disk # Substitua pelo caminho desejado no disco
+    runtime: python # Substitua pelo runtime desejado
     plan: starter
 
   - name: aeroespacial-worker-service
@@ -31,8 +31,8 @@ services:
         value: redis://aeroespacial-redis-service:6379/1
       - key: APP_CACHE_URL
         value: redis://aeroespacial-redis-service:6379/2
-    startCommand: echo "Worker service starting..."
-    runtime: python
+    startCommand: echo "Worker service starting..." # Adicione um comando de inicialização válido
+    runtime: python # Substitua pelo runtime desejado
     plan: starter
 
   - name: aeroespacial-nginx-service
@@ -50,15 +50,17 @@ services:
         value: /usr/share/nginx/html/static
       - key: NGINX_TIMEOUT
         value: "300"
-    startCommand: echo "Nginx service starting..."
+    startCommand: echo "Nginx service starting..." # Adicione um comando de inicialização válido
     disk:
       name: aeroespacial-static-volume
-      mountPath: /path/on/disk
-    runtime: manual
+      mountPath: /path/on/disk # Substitua pelo caminho desejado no disco
+    dockerImage:
+      source: your-nginx-docker-image # Substitua pelo nome da sua imagem Docker do Nginx
     plan: starter
 
   - name: aeroespacial-redis-service
     type: web
-    startCommand: echo "Redis service starting..."
-    runtime: manual
+    startCommand: echo "Redis service starting..." # Adicione um comando de inicialização válido
+    dockerImage:
+      source: your-redis-docker-image # Substitua pelo nome da sua imagem Docker do Redis
     plan: starter
