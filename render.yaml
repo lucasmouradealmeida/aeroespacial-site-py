@@ -1,66 +1,36 @@
-version: 3
-
+version: 0
 services:
   - name: aeroespacial-site-service
-    image: aeroespacial:latest
-    command: gunicorn -w 2 'server.web:app' -b '0.0.0.0:5000'
-    restart: on-failure
-    ports:
-      - 5000:5000
-    environment:
-      - AMBIENTE=dev
-      - APP_SESSION_URL=redis://aeroespacial-redis-service:6379/0
-      - APP_BROKER_URL=redis://aeroespacial-redis-service:6379/1
-      - APP_BACKEND_URL=redis://aeroespacial-redis-service:6379/1
-      - APP_CACHE_URL=redis://aeroespacial-redis-service:6379/2
-    volumes:
-      - name: aeroespacial-static-volume
-    networks:
-      - aeroespacial-network
-    depends_on:
-      - aeroespacial-redis-service
-
+    type: web
+    envVars:
+      AMBIENTE: dev
+      APP_SESSION_URL: redis://aeroespacial-redis-service:6379/0
+      APP_BROKER_URL: redis://aeroespacial-redis-service:6379/1
+      APP_BACKEND_URL: redis://aeroespacial-redis-service:6379/1
+      APP_CACHE_URL: redis://aeroespacial-redis-service:6379/2
+    disk:
+      name: aeroespacial-static-volume
+    plan: starter
   - name: aeroespacial-worker-service
-    image: aeroespacial:latest
-    command: celery -A server.worker worker --concurrency=2 -B --loglevel=ERROR -E
-    restart: on-failure
-    environment:
-      - AMBIENTE=dev
-      - APP_BROKER_URL=redis://aeroespacial-redis-service:6379/1
-      - APP_BACKEND_URL=redis://aeroespacial-redis-service:6379/1
-      - APP_CACHE_URL=redis://aeroespacial-redis-service:6379/2
-    networks:
-      - aeroespacial-network
-    depends_on:
-      - aeroespacial-redis-service
-
+    type: job
+    envVars:
+      AMBIENTE: dev
+      APP_BROKER_URL: redis://aeroespacial-redis-service:6379/1
+      APP_BACKEND_URL: redis://aeroespacial-redis-service:6379/1
+      APP_CACHE_URL: redis://aeroespacial-redis-service:6379/2
+    plan: starter
   - name: aeroespacial-nginx-service
-    image: aeroespacial/nginx:latest
-    restart: on-failure
-    ports:
-      - 8080:80
-    environment:
-      - NGINX_WORKERS=2
-      - NGINX_ACCEPT_MUTEX=on
-      - NGINX_SERVER_APP=aeroespacial-site-service:5000
-      - NGINX_ACCESS_LOG=off
-      - NGINX_STATIC_FOLDER=/usr/share/nginx/html/static
-      - NGINX_TIMEOUT=300
-    networks:
-      - aeroespacial-network
-    volumes:
-      - name: aeroespacial-static-volume
-    depends_on:
-      - aeroespacial-site-service
-
+    type: web
+    envVars:
+      NGINX_WORKERS: 2
+      NGINX_ACCEPT_MUTEX: on
+      NGINX_SERVER_APP: aeroespacial-site-service:5000
+      NGINX_ACCESS_LOG: off
+      NGINX_STATIC_FOLDER: /usr/share/nginx/html/static
+      NGINX_TIMEOUT: 300
+    disk:
+      name: aeroespacial-static-volume
+    plan: starter
   - name: aeroespacial-redis-service
-    image: redis:7.2.0-alpine3.18
-    restart: on-failure
-    networks:
-      - aeroespacial-network
-
-volumes:
-  - name: aeroespacial-static-volume
-
-networks:
-  - aeroespacial-network
+    type: cache
+    plan: small
