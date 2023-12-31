@@ -18,6 +18,8 @@ services:
       name: aeroespacial-static-volume
       mountPath: /path/on/disk
     runtime: python
+    dockerImage:
+      source: ./docker/app.dockerfile
     plan: starter
 
   - name: aeroespacial-worker-service
@@ -55,12 +57,10 @@ services:
       name: aeroespacial-static-volume
       mountPath: /path/on/disk
     dockerImage:
-      source: docker/nginx.dockerfile
+      source: ./docker/nginx.dockerfile
     plan: starter
 
   - name: aeroespacial-redis-service
     type: web
     startCommand: echo "Redis service starting..."
-    dockerImage:
-      source: docker/app.dockerfile
     plan: starter
