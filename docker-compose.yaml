@@ -1,11 +1,11 @@
 version: "3"
 services:
-  crm-site-service:
+  aeroespacial-site-service:
     build:
       context: .
       dockerfile: ./docker/app.dockerfile
-    image: 806324789387.dkr.ecr.sa-east-1.amazonaws.com/dev/crm/aeroespacial:latest
-    container_name: crm-site-container
+    image: 806324789387.dkr.ecr.sa-east-1.amazonaws.com/dev/aeroespacial/aeroespacial:latest
+    container_name: aeroespacial-container
     command: gunicorn -w 2 'server.web:app' -b '0.0.0.0:5000'
     restart:
       on-failure
@@ -16,77 +16,77 @@ services:
       - AMBIENTE=dev
       - AWS_ACCESS_KEY_ID=${HOST_AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${HOST_AWS_SECRET_ACCESS_KEY}
-      - APP_SESSION_URL=redis://crm-redis-service:6379/0
-      - APP_BROKER_URL=redis://crm-redis-service:6379/1
-      - APP_BACKEND_URL=redis://crm-redis-service:6379/1
-      - APP_CACHE_URL=redis://crm-redis-service:6379/2
+      - APP_SESSION_URL=redis://aeroespacial-redis-service:6379/0
+      - APP_BROKER_URL=redis://aeroespacial-redis-service:6379/1
+      - APP_BACKEND_URL=redis://aeroespacial-redis-service:6379/1
+      - APP_CACHE_URL=redis://aeroespacial-redis-service:6379/2
       # - LOG_LEVEL=DEBUG
     volumes:
-      - crm-static-volume:/home/non-root/client/public
+      - aeroespacial-static-volume:/home/non-root/client/public
     networks:
-      - ape11-network
+      - aeroespacial-network
     depends_on:
-      - crm-redis-service
+      - aeroespacial-redis-service
 
-  crm-worker-service:
+  aeroespacial-worker-service:
     build:
       context: .
       dockerfile: ./docker/app.dockerfile
-    image: 806324789387.dkr.ecr.sa-east-1.amazonaws.com/dev/crm/aeroespacial:latest
-    container_name: crm-worker-container
+    image: 806324789387.dkr.ecr.sa-east-1.amazonaws.com/dev/aeroespacial/aeroespacial:latest
+    container_name: aeroespacial-worker-container
     command: celery -A server.worker worker --concurrency=2 -B --loglevel=ERROR -E
     restart: on-failure
     environment:
       - AMBIENTE=dev
       - AWS_ACCESS_KEY_ID=${HOST_AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${HOST_AWS_SECRET_ACCESS_KEY}
-      # - APP_SESSION_URL=redis://crm-redis-service:6379/0
-      - APP_BROKER_URL=redis://crm-redis-service:6379/1
-      - APP_BACKEND_URL=redis://crm-redis-service:6379/1
-      - APP_CACHE_URL=redis://crm-redis-service:6379/2
+      # - APP_SESSION_URL=redis://aeroespacial-redis-service:6379/0
+      - APP_BROKER_URL=redis://aeroespacial-redis-service:6379/1
+      - APP_BACKEND_URL=redis://aeroespacial-redis-service:6379/1
+      - APP_CACHE_URL=redis://aeroespacial-redis-service:6379/2
       # - LOG_LEVEL=DEBUG
     networks:
-      - ape11-network
+      - aeroespacial-network
     depends_on:
-      - crm-redis-service
+      - aeroespacial-redis-service
 
-  crm-nginx-service:
+  aeroespacial-nginx-service:
     build:
       context: .
       dockerfile: ./docker/nginx.dockerfile
     image: 806324789387.dkr.ecr.sa-east-1.amazonaws.com/dev/nginx:latest
-    container_name: crm-nginx-container
+    container_name: aeroespacial-nginx-container
     restart: on-failure
     ports:
       - 8080:80
     environment:
       - NGINX_WORKERS=2
       - NGINX_ACCEPT_MUTEX=on
-      - NGINX_SERVER_APP=crm-site-service:5000
+      - NGINX_SERVER_APP=aeroespacial-site-service:5000
       - NGINX_ACCESS_LOG=off
       - NGINX_STATIC_FOLDER=/usr/share/nginx/html/static
       - NGINX_TIMEOUT=300
     networks:
-      - ape11-network
+      - aeroespacial-network
     volumes:
-      - crm-static-volume:/usr/share/nginx/html/static
+      - aeroespacial-static-volume:/usr/share/nginx/html/static
     depends_on:
-      - crm-site-service
+      - aeroespacial-site-service
 
-  crm-redis-service:
+  aeroespacial-redis-service:
     image: redis:7.2.0-alpine3.18
-    container_name: crm-redis-container
+    container_name: aeroespacial-redis-container
     restart: on-failure
     # ports:
     #     - "6379:6379"
     networks:
-      - ape11-network
+      - aeroespacial-network
 
 volumes:
-  crm-static-volume:
-    name: crm-static-volume
+  aeroespacial-static-volume:
+    name: aeroespacial-static-volume
 
 networks:
-  ape11-network:
-    name: ape11-network
+  aeroespacial-network:
+    name: aeroespacial-network
     external: false
