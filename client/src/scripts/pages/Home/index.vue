@@ -106,24 +106,56 @@
 
                 <div class="cards">
                     <div class="card">
+                        <div class="cardback"></div>
+                        <div class="artworkSystem"></div>
+                        <div class="backdropicon"></div>
                         <svg @click="modalSolarSystema = true" class="expandcard w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 1h4m0 0v4m0-4-5 5.243M5 15H1m0 0v-4m0 4 5.243-5"/>
                         </svg>  
+                        <div class="cardcontent">
+                            <div class="backdrop"></div>
+                            <div>Sistema Solar</div>
+                            <div class="divider"></div>
+                        </div>
                     </div>
                     <div class="card">
+                        <div class="cardback"></div>
+                        <div class="artworkPosition"></div>
+                        <div class="backdropicon"></div>
                         <svg @click="modalPosicionamento = true" class="expandcard w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 1h4m0 0v4m0-4-5 5.243M5 15H1m0 0v-4m0 4 5.243-5"/>
                         </svg>  
+                        <div class="cardcontent">
+                            <div class="backdrop"></div>
+                            <div>Posicioamento de Satélites</div>
+                            <div class="divider"></div>
+                        </div>
                     </div>
                     <div class="card">
+                        <div class="cardback"></div>
+                        <div class="artworkManobra"></div>
+                        <div class="backdropicon"></div>
                         <svg @click="modalManobras = true" class="expandcard w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 1h4m0 0v4m0-4-5 5.243M5 15H1m0 0v-4m0 4 5.243-5"/>
-                        </svg>  
+                        </svg>
+                        <div class="cardcontent">
+                            <div class="backdrop"></div>
+                            <div>Manobras Orbitais</div>
+                            <div class="divider"></div>
+                        </div>
                     </div>
                     <div class="card">
+                        <div class="cardback"></div>
+                        <div class="artworkLagrange"></div>
+                        <div class="backdropicon"></div>
                         <svg @click="modalLagrange = true" class="expandcard w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 1h4m0 0v4m0-4-5 5.243M5 15H1m0 0v-4m0 4 5.243-5"/>
-                        </svg>  
+                        </svg>
+                        <div class="cardcontent">
+                            <div class="backdrop"></div>
+                            <div>Pontos de Lagrange</div>
+                            <div class="divider"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -145,17 +177,84 @@
         <template v-slot:footer>
             <div></div>
         </template>
-
     </UserModal>
+
+    <Modal v-show="modalSolarSystema">
+        <template v-slot:header>
+            <svg @click="modalSolarSystema = false" class="cursor-pointer w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="#222222" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m13 7-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+            </svg>
+        </template>
+
+        <template v-slot:body>
+            
+        </template>
+
+        <template v-slot:footer>
+            <div></div>
+        </template>
+    </Modal>
+
+    <Modal v-show="modalPosicionamento">
+        <template v-slot:header>
+            <svg @click="modalPosicionamento = false" class="cursor-pointer w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="#222222" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m13 7-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+            </svg>
+        </template>
+
+        <template v-slot:body>
+            <div></div>
+        </template>
+
+        <template v-slot:footer>
+            <div></div>
+        </template>
+    </Modal>
+
+    <Modal v-show="modalManobras">
+        <template v-slot:header>
+            <svg @click="modalManobras = false" class="cursor-pointer w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="#222222" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m13 7-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+            </svg>
+        </template>
+
+        <template v-slot:body>
+            <div></div>
+        </template>
+
+        <template v-slot:footer>
+            <div></div>
+        </template>
+    </Modal>
+
+
+    <Modal v-show="modalLagrange">
+        <template v-slot:header>
+            <svg @click="modalLagrange = false" class="cursor-pointer w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="#222222" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m13 7-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+            </svg>
+        </template>
+
+        <template v-slot:body>
+            <div></div>
+        </template>
+
+        <template v-slot:footer>
+            <div></div>
+        </template>
+    </Modal>
+
 
 </template>
 <script>
+import Modal from '@/components/Modal'
 import UserModal from '@/components/UserModal'
 
 export default {
     name: "Home",
     components: {
         UserModal,
+        Modal,
 
     },
     data() {
@@ -206,123 +305,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-
-.main{
-    width: 100%;
-}
-
-html{
-    overflow: hidden;
-}
-
-.expandcard{
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    cursor: pointer;
-}
-
-.container{
-    display: flex;
-    flex-wrap: wrap;
-    color: #d3d3d3;
-    font-size: 20px;
-    margin-bottom: 200px;
-
-    .title{
-        width: 100%;
-        font-size: 30px;
-        font-weight: 900;
-        color: #d3d3d3;
-        margin-top: 60px;
-    }
-
-    .divider{
-        width: 100%;
-        height: 1px;
-        background-color: #d3d3d3;
-        margin-bottom: 20px;
-    }
-}
-
-.content{
-    height: 100vh;
-    background-color: #222222;
-    overflow: auto;
-}
-
-.pagetitle{
-    display: flex;
-    flex-direction: column;
-
-    .title{
-        width: fit-content;
-        font-size: 40px;
-        font-weight: 900;
-        color: #324AB2;
-        margin: 20px;
-    }
-}
-
-.cards{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    margin-bottom: 100px;
-    margin-top: 20px;
-
-    .card{
-        width: 350px;
-        height: 300px;
-        margin: 20px;
-        background-color: rgba(211, 211, 211, 0.3);
-        filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.25));
-        border-radius: 25px;
-    }
-}
-
-
-.menu{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    height: 80px;
-    background-color: #222222;
-    
-
-    .logo{
-        width: 50%;
-        justify-content: flex-start;
-        font-size: 20px;
-        font-weight: 700;
-        color: #fff;
-        margin-left: 20px;
-    }
-
-    .pages{
-        display: flex;
-        width: 50%;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 20px;
-        margin-right: 20px;
-
-        .label{
-            width: fit-content;
-            font-size: 20px;
-            font-weight: 800;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .selected{
-            color: #324AB2
-        }
-
-    }
-
-}
-
-</style>
