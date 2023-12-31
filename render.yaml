@@ -18,8 +18,6 @@ services:
       name: aeroespacial-static-volume
       mountPath: /path/on/disk
     runtime: python
-    dockerImage:
-      source: ./docker/app.dockerfile
     plan: starter
 
   - name: aeroespacial-worker-service
@@ -56,8 +54,6 @@ services:
     disk:
       name: aeroespacial-static-volume
       mountPath: /path/on/disk
-    dockerImage:
-      source: ./docker/nginx.dockerfile
     plan: starter
 
   - name: aeroespacial-redis-service
