@@ -1,8 +1,6 @@
 services:
-  - type: web
-    name: aeroespacial-site-service
-    buildCommand: docker build -t 806324789387.dkr.ecr.sa-east-1.amazonaws.com/dev/aeroespacial/aeroespacial:latest -f ./docker/app.dockerfile .
-    startCommand: gunicorn -w 2 'server.web:app' -b '0.0.0.0:5000'
+  - name: aeroespacial-site-service
+    type: web
     env:
       - key: AMBIENTE
         value: dev
@@ -10,13 +8,13 @@ services:
         from: HOST_AWS_ACCESS_KEY_ID
       - key: AWS_SECRET_ACCESS_KEY
         from: HOST_AWS_SECRET_ACCESS_KEY
+    buildCommand: docker build -t 806324789387.dkr.ecr.sa-east-1.amazonaws.com/dev/aeroespacial/aeroespacial:latest -f ./docker/app.dockerfile .
+    startCommand: gunicorn -w 2 'server.web:app' -b '0.0.0.0:5000'
     ports:
       - 5000:5000
 
-  - type: worker
-    name: aeroespacial-worker-service
-    buildCommand: docker build -t 806324789387.dkr.ecr.sa-east-1.amazonaws.com/dev/aeroespacial/aeroespacial:latest -f ./docker/app.dockerfile .
-    startCommand: celery -A server.worker worker --concurrency=2 -B --loglevel=ERROR -E
+  - name: aeroespacial-worker-service
+    type: worker
     env:
       - key: AMBIENTE
         value: dev
@@ -24,11 +22,11 @@ services:
         from: HOST_AWS_ACCESS_KEY_ID
       - key: AWS_SECRET_ACCESS_KEY
         from: HOST_AWS_SECRET_ACCESS_KEY
+    buildCommand: docker build -t 806324789387.dkr.ecr.sa-east-1.amazonaws.com/dev/aeroespacial/aeroespacial:latest -f ./docker/app.dockerfile .
+    startCommand: celery -A server.worker worker --concurrency=2 -B --loglevel=ERROR -E
 
-  - type: web
-    name: aeroespacial-nginx-service
-    buildCommand: docker build -t 806324789387.dkr.ecr.sa-east-1.amazonaws.com/dev/nginx:latest -f ./docker/nginx.dockerfile .
-    startCommand: nginx -g 'daemon off;'
+  - name: aeroespacial-nginx-service
+    type: web
     env:
       - key: NGINX_WORKERS
         value: "2"
@@ -42,18 +40,18 @@ services:
         value: /usr/share/nginx/html/static
       - key: NGINX_TIMEOUT
         value: "300"
+    buildCommand: docker build -t 806324789387.dkr.ecr.sa-east-1.amazonaws.com/dev/nginx:latest -f ./docker/nginx.dockerfile .
+    startCommand: nginx -g 'daemon off;'
     ports:
       - 8080:80
 
-  - type: web
-    name: aeroespacial-redis-service
+  - name: aeroespacial-redis-service
     image: redis:7.2.0-alpine3.18
+    type: web
 
 volumes:
-  aeroespacial-static-volume:
-    name: aeroespacial-static-volume
+  - name: aeroespacial-static-volume
 
 networks:
-  aeroespacial-network:
-    name: aeroespacial-network
+  - name: aeroespacial-network
     external: false
