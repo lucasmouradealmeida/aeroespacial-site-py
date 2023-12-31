@@ -16,7 +16,6 @@ services:
     startCommand: echo "Web service starting..."
     disk:
       name: aeroespacial-static-volume
-      mountPath: /path/on/disk
     runtime: python
     plan: starter
 
@@ -53,11 +52,11 @@ services:
     startCommand: echo "Nginx service starting..."
     disk:
       name: aeroespacial-static-volume
-      mountPath: /path/on/disk
-    runtime: nginx
+    runtime: manual
     plan: starter
 
   - name: aeroespacial-redis-service
     type: web
+    startCommand: echo "Redis service starting..."
+    runtime: manual
     plan: starter
-    runtime: redis
