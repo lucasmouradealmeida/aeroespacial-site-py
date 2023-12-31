@@ -12,7 +12,7 @@ services:
       name: aeroespacial-static-volume
     plan: starter
   - name: aeroespacial-worker-service
-    type: job
+    type: worker
     envVars:
       AMBIENTE: dev
       APP_BROKER_URL: redis://aeroespacial-redis-service:6379/1
