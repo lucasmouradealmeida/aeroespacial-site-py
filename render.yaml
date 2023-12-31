@@ -1,7 +1,7 @@
 version: 3
 
 services:
-  aeroespacial-site-service:
+  - name: aeroespacial-site-service
     image: aeroespacial:latest
     command: gunicorn -w 2 'server.web:app' -b '0.0.0.0:5000'
     restart: on-failure
@@ -14,13 +14,13 @@ services:
       - APP_BACKEND_URL=redis://aeroespacial-redis-service:6379/1
       - APP_CACHE_URL=redis://aeroespacial-redis-service:6379/2
     volumes:
-      - aeroespacial-static-volume:/home/non-root/client/public
+      - name: aeroespacial-static-volume
     networks:
       - aeroespacial-network
     depends_on:
       - aeroespacial-redis-service
 
-  aeroespacial-worker-service:
+  - name: aeroespacial-worker-service
     image: aeroespacial:latest
     command: celery -A server.worker worker --concurrency=2 -B --loglevel=ERROR -E
     restart: on-failure
@@ -34,7 +34,7 @@ services:
     depends_on:
       - aeroespacial-redis-service
 
-  aeroespacial-nginx-service:
+  - name: aeroespacial-nginx-service
     image: aeroespacial/nginx:latest
     restart: on-failure
     ports:
@@ -49,20 +49,18 @@ services:
     networks:
       - aeroespacial-network
     volumes:
-      - aeroespacial-static-volume:/usr/share/nginx/html/static
+      - name: aeroespacial-static-volume
     depends_on:
       - aeroespacial-site-service
 
-  aeroespacial-redis-service:
+  - name: aeroespacial-redis-service
     image: redis:7.2.0-alpine3.18
     restart: on-failure
     networks:
       - aeroespacial-network
 
 volumes:
-  aeroespacial-static-volume:
-    name: aeroespacial-static-volume
+  - name: aeroespacial-static-volume
 
 networks:
-  aeroespacial-network:
-    external: false
+  - aeroespacial-network
