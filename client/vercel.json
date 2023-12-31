@@ -2,7 +2,7 @@
     "cleanUrls": true,
     "rewrites": [
       {
-        "source": "./public/dist/*",
+        "source": "./public/dist/**",
         "destination": "/index.html"
       }
     ]
