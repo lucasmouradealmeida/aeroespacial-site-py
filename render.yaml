@@ -1,4 +1,4 @@
-version: 0
+version: 1
 services:
   - name: aeroespacial-site-service
     type: web
@@ -13,9 +13,13 @@ services:
         value: redis://aeroespacial-redis-service:6379/1
       - key: APP_CACHE_URL
         value: redis://aeroespacial-redis-service:6379/2
+    startCommand: echo "Web service starting..."
     disk:
       name: aeroespacial-static-volume
+      mountPath: /path/on/disk
+    runtime: python
     plan: starter
+
   - name: aeroespacial-worker-service
     type: worker
     envVars:
@@ -27,7 +31,10 @@ services:
         value: redis://aeroespacial-redis-service:6379/1
       - key: APP_CACHE_URL
         value: redis://aeroespacial-redis-service:6379/2
+    startCommand: echo "Worker service starting..."
+    runtime: python
     plan: starter
+
   - name: aeroespacial-nginx-service
     type: web
     envVars:
@@ -43,9 +50,14 @@ services:
         value: /usr/share/nginx/html/static
       - key: NGINX_TIMEOUT
         value: "300"
+    startCommand: echo "Nginx service starting..."
     disk:
       name: aeroespacial-static-volume
+      mountPath: /path/on/disk
+    runtime: nginx
     plan: starter
+
   - name: aeroespacial-redis-service
     type: web
-    plan: small
+    plan: starter
+    runtime: redis
