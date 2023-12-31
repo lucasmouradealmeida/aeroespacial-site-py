@@ -3,31 +3,46 @@ services:
   - name: aeroespacial-site-service
     type: web
     envVars:
-      AMBIENTE: dev
-      APP_SESSION_URL: redis://aeroespacial-redis-service:6379/0
-      APP_BROKER_URL: redis://aeroespacial-redis-service:6379/1
-      APP_BACKEND_URL: redis://aeroespacial-redis-service:6379/1
-      APP_CACHE_URL: redis://aeroespacial-redis-service:6379/2
+      - key: AMBIENTE
+        value: dev
+      - key: APP_SESSION_URL
+        value: redis://aeroespacial-redis-service:6379/0
+      - key: APP_BROKER_URL
+        value: redis://aeroespacial-redis-service:6379/1
+      - key: APP_BACKEND_URL
+        value: redis://aeroespacial-redis-service:6379/1
+      - key: APP_CACHE_URL
+        value: redis://aeroespacial-redis-service:6379/2
     disk:
       name: aeroespacial-static-volume
     plan: starter
   - name: aeroespacial-worker-service
     type: worker
     envVars:
-      AMBIENTE: dev
-      APP_BROKER_URL: redis://aeroespacial-redis-service:6379/1
-      APP_BACKEND_URL: redis://aeroespacial-redis-service:6379/1
-      APP_CACHE_URL: redis://aeroespacial-redis-service:6379/2
+      - key: AMBIENTE
+        value: dev
+      - key: APP_BROKER_URL
+        value: redis://aeroespacial-redis-service:6379/1
+      - key: APP_BACKEND_URL
+        value: redis://aeroespacial-redis-service:6379/1
+      - key: APP_CACHE_URL
+        value: redis://aeroespacial-redis-service:6379/2
     plan: starter
   - name: aeroespacial-nginx-service
     type: web
     envVars:
-      NGINX_WORKERS: 2
-      NGINX_ACCEPT_MUTEX: on
-      NGINX_SERVER_APP: aeroespacial-site-service:5000
-      NGINX_ACCESS_LOG: off
-      NGINX_STATIC_FOLDER: /usr/share/nginx/html/static
-      NGINX_TIMEOUT: 300
+      - key: NGINX_WORKERS
+        value: "2"
+      - key: NGINX_ACCEPT_MUTEX
+        value: on
+      - key: NGINX_SERVER_APP
+        value: aeroespacial-site-service:5000
+      - key: NGINX_ACCESS_LOG
+        value: off
+      - key: NGINX_STATIC_FOLDER
+        value: /usr/share/nginx/html/static
+      - key: NGINX_TIMEOUT
+        value: "300"
     disk:
       name: aeroespacial-static-volume
     plan: starter
