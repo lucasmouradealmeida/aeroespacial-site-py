@@ -10,9 +10,8 @@ services:
         from: HOST_AWS_ACCESS_KEY_ID
       - key: AWS_SECRET_ACCESS_KEY
         from: HOST_AWS_SECRET_ACCESS_KEY
-      # Adicione outras variáveis de ambiente conforme necessário
     ports:
-      - 5000
+      - 5000:5000
 
   - type: worker
     name: aeroespacial-worker-service
@@ -25,7 +24,6 @@ services:
         from: HOST_AWS_ACCESS_KEY_ID
       - key: AWS_SECRET_ACCESS_KEY
         from: HOST_AWS_SECRET_ACCESS_KEY
-      # Adicione outras variáveis de ambiente conforme necessário
 
   - type: web
     name: aeroespacial-nginx-service
@@ -44,8 +42,18 @@ services:
         value: /usr/share/nginx/html/static
       - key: NGINX_TIMEOUT
         value: "300"
+    ports:
+      - 8080:80
 
   - type: web
     name: aeroespacial-redis-service
     image: redis:7.2.0-alpine3.18
-# Adicione volumes e redes conforme necessário
+
+volumes:
+  aeroespacial-static-volume:
+    name: aeroespacial-static-volume
+
+networks:
+  aeroespacial-network:
+    name: aeroespacial-network
+    external: false
