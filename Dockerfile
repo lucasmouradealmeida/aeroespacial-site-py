@@ -101,6 +101,6 @@ ENV GIT_COMMIT=$GIT_COMMIT \
     NGINX_STATIC_FOLDER=/usr/share/nginx/html/static \
     NGINX_TIMEOUT=300 \
 
-COPY [ "./scripts/nginx.conf", "./scripts/nginx.sh", "./" ]
+COPY ./scripts/nginx.conf ./scripts/nginx.sh ./
 
 CMD [ "/bin/bash", "./nginx.sh" ]
