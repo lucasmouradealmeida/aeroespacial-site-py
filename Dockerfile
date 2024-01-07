@@ -99,9 +99,6 @@ RUN apt -qq update && \
     apt install --no-install-recommends -y nginx-extras && \
     rm -r /var/lib/apt/lists/* && apt clean
 
-COPY [ "./scripts/nginx.conf", "./scripts/nginx.sh", "./" ]
-
-CMD [ "/bin/bash", "./nginx.sh" ]
 
 # ---- Application Services ----
 # Add the following lines to the Dockerfile to include services
@@ -118,6 +115,6 @@ FROM redis_service as aeroespacial-redis-service
 # Service 4: aeroespacial-nginx-service
 FROM nginx:1.25.0-bullseye as aeroespacial-nginx-service
 
-COPY ./scripts/nginx.conf ./scripts/nginx.sh ./
+COPY [ "./scripts/nginx.conf", "./scripts/nginx.sh", "./" ]
 
-CMD ["/bin/bash", "./nginx.sh"]
+CMD [ "/bin/bash", "./nginx.sh" ]
