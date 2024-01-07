@@ -41,7 +41,7 @@ ENV TZ=America/Sao_Paulo \
     # APP_BACKEND_URL=redis://aeroespacial-redis-service:6379/1 \
     # APP_CACHE_URL=redis://aeroespacial-redis-service:6379/2
 
-RUN apt update -qq && \
+RUN apt -qq update && \
     apt install -y --no-install-recommends locales tzdata && \
     ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && \
     dpkg-reconfigure --frontend noninteractive tzdata && \
