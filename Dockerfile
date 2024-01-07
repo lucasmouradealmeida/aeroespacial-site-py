@@ -78,28 +78,6 @@ COPY --chown=${USER}:${USER} ./client/pages ./client/pages
 COPY --chown=${USER}:${USER} ./server ./server
 COPY --from=nodejs_builder --chown=${USER}:${USER} /var/nodejs-temp/public ./client/public
 
-# ---- NGINX Release Image ----
-FROM nginx:1.25.0-bullseye
-ARG GIT_COMMIT
-
-ENV GIT_COMMIT=$GIT_COMMIT \
-    NGINX_WORKERS=2 \
-    NGINX_ACCEPT_MUTEX=on \
-    NGINX_SERVER_APP=aeroespacial-site-service:5000 \
-    NGINX_ACCESS_LOG=off \
-    NGINX_STATIC_FOLDER=/usr/share/nginx/html/static \
-    NGINX_TIMEOUT=300 \
-
-RUN apt -qq update && \
-    apt install --no-install-recommends -y locales tzdata ssl-cert && \ 
-    ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && \
-    dpkg-reconfigure --frontend noninteractive tzdata && \
-    sed -i -e 's/# pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/' /etc/locale.gen && \
-    locale-gen && update-locale LANG=pt_BR.UTF-8 && \
-    apt install --no-install-recommends -y nginx-extras && \
-    rm -r /var/lib/apt/lists/* && apt clean
-
-
 # ---- Application Services ----
 # Add the following lines to the Dockerfile to include services
 
@@ -114,6 +92,14 @@ FROM redis_service as aeroespacial-redis-service
 
 # Service 4: aeroespacial-nginx-service
 FROM nginx:1.25.0-bullseye as aeroespacial-nginx-service
+
+ENV GIT_COMMIT=$GIT_COMMIT \
+    NGINX_WORKERS=2 \
+    NGINX_ACCEPT_MUTEX=on \
+    NGINX_SERVER_APP=aeroespacial-site-service:5000 \
+    NGINX_ACCESS_LOG=off \
+    NGINX_STATIC_FOLDER=/usr/share/nginx/html/static \
+    NGINX_TIMEOUT=300 \
 
 COPY [ "./scripts/nginx.conf", "./scripts/nginx.sh", "./" ]
 
