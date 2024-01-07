@@ -23,14 +23,12 @@ ENV TZ=America/Sao_Paulo \
     PYTHONWARNINGS="ignore:Unverified HTTPS request" \
     PIP_DISABLE_PIP_VERSION_CHECK=1
 
-RUN apt update -qq && \
-    apt install -y --no-install-recommends locales tzdata && \
-    ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && \
-    dpkg-reconfigure --frontend noninteractive tzdata && \
-    locale-gen C.UTF-8 && update-locale LANG=C.UTF-8 LC_ALL=C.UTF-8 && \
-    useradd --home /home/non-root non-root && \
-    apt install -y --no-install-recommends gcc libc6-dev libcurl4-openssl-dev libssl-dev
+# Set the locale
+RUN apt-get update && apt-get install -y locales && \
+    sed -i -e 's/# \(en_US\.UTF-8\)/\1/' /etc/locale.gen && \
+    locale-gen
 
+RUN useradd --create-home --shell /bin/bash non-root
 USER non-root
 WORKDIR /home/non-root
 
@@ -49,8 +47,8 @@ RUN pip install --user -r ./requirements.txt && \
 
 USER root
 
-RUN apt purge -y gcc libc6-dev libcurl4-openssl-dev libssl-dev && apt autoremove -y && \ 
-    apt clean -y && rm -rf /var/lib/apt/lists/*
+RUN apt-get purge -y locales && apt-get autoremove -y && \ 
+    apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 USER non-root
 WORKDIR /home/non-root
