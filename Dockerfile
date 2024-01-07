@@ -14,8 +14,8 @@ RUN cd /var/nodejs-temp && \
     NODE_ENV=production npm run build
 
 
-# ---- Redis Image ----
-FROM redis:7.2.0-alpine3.18 as redis_service
+# # ---- Redis Image ----
+# FROM redis:7.2.0-alpine3.18 as redis_service
 
 
 # ---- Python Image ----
@@ -87,8 +87,8 @@ CMD gunicorn -w 2 'server.web:app' -b '0.0.0.0:5000'
 # Service 2: aeroespacial-worker-service
 CMD celery -A server.worker worker --concurrency=2 -B --loglevel=ERROR -E
 
-# Service 3: aeroespacial-redis-service
-FROM redis_service as aeroespacial-redis-service
+# # Service 3: aeroespacial-redis-service
+# FROM redis_service as aeroespacial-redis-service
 
 # # Service 4: aeroespacial-nginx-service
 # FROM nginx:1.25.0-bullseye as aeroespacial-nginx-service
