@@ -35,7 +35,7 @@ ENV TZ=America/Sao_Paulo \
     PYTHONHASHSEED=random \
     PYTHONWARNINGS="ignore:Unverified HTTPS request" \
     PIP_DISABLE_PIP_VERSION_CHECK=1 \
-    AMBIENTE=prd \
+    AMBIENTE=dev \
     APP_SESSION_URL=redis://aeroespacial-redis-service:6379/0 \
     APP_BROKER_URL=redis://aeroespacial-redis-service:6379/1 \
     APP_BACKEND_URL=redis://aeroespacial-redis-service:6379/1 \
@@ -96,7 +96,7 @@ FROM nginx:1.25.0-bullseye as aeroespacial-nginx-service
 ENV GIT_COMMIT=$GIT_COMMIT \
     NGINX_WORKERS=2 \
     NGINX_ACCEPT_MUTEX=on \
-    NGINX_SERVER_APP=aeroespacial-site-service:5000 \
+    NGINX_SERVER_APP=0.0.0.0:5000 \
     NGINX_ACCESS_LOG=off \
     NGINX_STATIC_FOLDER=/usr/share/nginx/html/static \
     NGINX_TIMEOUT=300
