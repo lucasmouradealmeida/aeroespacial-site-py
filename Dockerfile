@@ -1,7 +1,3 @@
-ARG USER=non-root
-ARG EXTRA_PKGS="gcc libc6-dev"
-
-
 # ---- Node.js Builder Image ----
 FROM node:14.19.0-bullseye AS nodejs_builder
 
@@ -13,7 +9,6 @@ RUN cd /var/nodejs-temp && \
 
 RUN cd /var/nodejs-temp && \
     NODE_ENV=production npm run build
-
 
 # ---- Python Image ----
 FROM python:3.11.6-slim-bookworm as app_release
@@ -69,3 +64,12 @@ WORKDIR /home/${USER}
 COPY --chown=${USER}:${USER} ./client/pages ./client/pages
 COPY --chown=${USER}:${USER} ./server ./server
 COPY --from=nodejs_builder --chown=${USER}:${USER} /var/nodejs-temp/public ./client/public
+
+# ---- Application Services ----
+# Add the following lines to the Dockerfile to include services
+
+# Service 1: aeroespacial-site-service
+CMD gunicorn -w 2 'server.web:app' -b '0.0.0.0:5000'
+
+# Service 2: aeroespacial-worker-service
+CMD celery -A server.worker worker --concurrency=2 -B --loglevel=ERROR -E
