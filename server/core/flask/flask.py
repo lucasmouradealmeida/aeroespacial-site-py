@@ -5,7 +5,6 @@ from flask_session import Session
 from flask_wtf.csrf import CSRFProtect
 
 from server.config import get_config
-# from server.core import redis
 from server.registers import commands, routes
 
 
@@ -23,8 +22,6 @@ def create_app() -> Flask:
 
     # Configuração do Flask-Session
     app.config["SESSION_TYPE"] = config.SESSION_TYPE
-    # host, port, db = redis.uri_to_conn(config.SESSION_URL)
-    # app.config["SESSION_REDIS"] = redis.create_conn(host=host, port=port, db=db)
     app.config["SESSION_PERMANENT"] = config.SESSION_PERMANENT
     app.config["PERMANENT_SESSION_LIFETIME"] = config.SESSION_LIFETIME
     app.config["SESSION_REFRESH_EACH_REQUEST"] = config.SESSION_REFRESH_REQUEST
