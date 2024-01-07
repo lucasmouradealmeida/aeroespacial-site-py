@@ -14,6 +14,10 @@ RUN cd /var/nodejs-temp && \
     NODE_ENV=production npm run build
 
 
+# ---- Redis Image ----
+FROM redis:7.2.0-alpine3.18 as redis_service
+
+
 # ---- Python Image ----
 FROM python:3.11.6-slim-bookworm as app_release
 
@@ -74,6 +78,31 @@ COPY --chown=${USER}:${USER} ./client/pages ./client/pages
 COPY --chown=${USER}:${USER} ./server ./server
 COPY --from=nodejs_builder --chown=${USER}:${USER} /var/nodejs-temp/public ./client/public
 
+# ---- NGINX Release Image ----
+FROM nginx:1.25.0-bullseye
+ARG GIT_COMMIT
+
+ENV GIT_COMMIT=$GIT_COMMIT \
+    NGINX_WORKERS=2 \
+    NGINX_ACCEPT_MUTEX=on \
+    NGINX_SERVER_APP=aeroespacial-site-service:5000 \
+    NGINX_ACCESS_LOG=off \
+    NGINX_STATIC_FOLDER=/usr/share/nginx/html/static \
+    NGINX_TIMEOUT=300 \
+
+RUN apt -qq update && \
+    apt install --no-install-recommends -y locales tzdata ssl-cert && \ 
+    ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && \
+    dpkg-reconfigure --frontend noninteractive tzdata && \
+    sed -i -e 's/# pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/' /etc/locale.gen && \
+    locale-gen && update-locale LANG=pt_BR.UTF-8 && \
+    apt install --no-install-recommends -y nginx-extras && \
+    rm -r /var/lib/apt/lists/* && apt clean
+
+COPY [ "./scripts/nginx.conf", "./scripts/nginx.sh", "./" ]
+
+CMD [ "/bin/bash", "./nginx.sh" ]
+
 # ---- Application Services ----
 # Add the following lines to the Dockerfile to include services
 
@@ -81,4 +110,14 @@ COPY --from=nodejs_builder --chown=${USER}:${USER} /var/nodejs-temp/public ./cli
 CMD gunicorn -w 2 'server.web:app' -b '0.0.0.0:5000'
 
 # Service 2: aeroespacial-worker-service
-# CMD celery -A server.worker worker --concurrency=2 -B --loglevel=ERROR -E
+CMD celery -A server.worker worker --concurrency=2 -B --loglevel=ERROR -E
+
+# Service 3: aeroespacial-redis-service
+FROM redis_service as aeroespacial-redis-service
+
+# Service 4: aeroespacial-nginx-service
+FROM nginx:1.25.0-bullseye as aeroespacial-nginx-service
+
+COPY ./scripts/nginx.conf ./scripts/nginx.sh ./
+
+CMD ["/bin/bash", "./nginx.sh"]
