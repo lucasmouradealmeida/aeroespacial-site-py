@@ -31,7 +31,8 @@ ENV TZ=America/Sao_Paulo \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONHASHSEED=random \
     PYTHONWARNINGS="ignore:Unverified HTTPS request" \
-    PIP_DISABLE_PIP_VERSION_CHECK=1
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    AMBIENTE=dev
 
 RUN apt update -qq && \
     apt install -y --no-install-recommends locales tzdata && \
