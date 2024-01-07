@@ -70,9 +70,12 @@ FROM nginx:1.25.0-bullseye
 ARG GIT_COMMIT
 
 ENV GIT_COMMIT=$GIT_COMMIT \
-    NGINX_WORKERS=1 \
-    NGINX_ACCEPT_MUTEX=off \
-    NGINX_ACCESS_LOG=off
+    NGINX_WORKERS=2 \
+    NGINX_ACCEPT_MUTEX=on \
+    NGINX_ACCESS_LOG=off \
+    NGINX_SERVER_APP=aeroespacial-site-service:5000 \
+    NGINX_STATIC_FOLDER=/usr/share/nginx/html/static \
+    NGINX_TIMEOUT=300
 
 RUN apt -qq update && \
     apt install --no-install-recommends -y locales tzdata ssl-cert && \ 
