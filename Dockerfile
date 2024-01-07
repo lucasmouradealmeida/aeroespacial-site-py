@@ -30,7 +30,12 @@ ENV TZ=America/Sao_Paulo \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONHASHSEED=random \
     PYTHONWARNINGS="ignore:Unverified HTTPS request" \
-    PIP_DISABLE_PIP_VERSION_CHECK=1
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    AMBIENTE=prd \
+    APP_SESSION_URL=redis://aeroespacial-redis-service:6379/0 \
+    APP_BROKER_URL=redis://aeroespacial-redis-service:6379/1 \
+    APP_BACKEND_URL=redis://aeroespacial-redis-service:6379/1 \
+    APP_CACHE_URL=redis://aeroespacial-redis-service:6379/2
 
 RUN apt update -qq && \
     apt install -y --no-install-recommends locales tzdata && \
