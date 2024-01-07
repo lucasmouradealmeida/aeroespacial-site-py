@@ -1,3 +1,7 @@
+ARG USER=non-root
+ARG EXTRA_PKGS="gcc libc6-dev"
+
+
 # ---- Node.js Builder Image ----
 FROM node:14.19.0-bullseye AS nodejs_builder
 
@@ -9,6 +13,7 @@ RUN cd /var/nodejs-temp && \
 
 RUN cd /var/nodejs-temp && \
     NODE_ENV=production npm run build
+
 
 # ---- Python Image ----
 FROM python:3.11.6-slim-bookworm as app_release
