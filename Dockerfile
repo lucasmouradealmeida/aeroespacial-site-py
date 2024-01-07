@@ -1,6 +1,6 @@
-# Use ARG before the FROM instruction
 ARG USER=non-root
 ARG EXTRA_PKGS="gcc libc6-dev"
+
 
 # ---- Node.js Builder Image ----
 FROM node:14.19.0-bullseye AS nodejs_builder
@@ -18,12 +18,10 @@ RUN cd /var/nodejs-temp && \
 # ---- Python Image ----
 FROM python:3.11.6-slim-bookworm as app_release
 
-# Move ARGs to the top of the Dockerfile
 ARG USER
 ARG EXTRA_PKGS
 ARG GIT_COMMIT
 
-# Continue with the rest of the Dockerfile...
 ENV TZ=America/Sao_Paulo \
     LC_ALL=pt_BR.UTF-8 \
     LC_CTYPE=pt_BR.UTF-8 \
@@ -33,10 +31,9 @@ ENV TZ=America/Sao_Paulo \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONHASHSEED=random \
     PYTHONWARNINGS="ignore:Unverified HTTPS request" \
-    PIP_DISABLE_PIP_VERSION_CHECK=1 \
-    AMBIENTE=dev \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
 
-RUN apt -qq update && \
+RUN apt update -qq && \
     apt install -y --no-install-recommends locales tzdata && \
     ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && \
     dpkg-reconfigure --frontend noninteractive tzdata && \
