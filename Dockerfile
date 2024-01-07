@@ -13,10 +13,6 @@ RUN cd /var/nodejs-temp && \
 # ---- Python Image ----
 FROM python:3.11.6-slim-bookworm as app_release
 
-ARG USER
-ARG EXTRA_PKGS
-ARG GIT_COMMIT
-
 ENV TZ=America/Sao_Paulo \
     LC_ALL=C.UTF-8 \
     LANG=C.UTF-8 \
@@ -32,19 +28,19 @@ RUN apt update -qq && \
     ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && \
     dpkg-reconfigure --frontend noninteractive tzdata && \
     locale-gen C.UTF-8 && update-locale LANG=C.UTF-8 LC_ALL=C.UTF-8 && \
-    useradd --home /home/${USER} ${USER} && \
-    apt install -y --no-install-recommends ${EXTRA_PKGS} libcurl4-openssl-dev libssl-dev
+    useradd --home /home/non-root non-root && \
+    apt install -y --no-install-recommends gcc libc6-dev libcurl4-openssl-dev libssl-dev
 
-USER ${USER}
-WORKDIR /home/${USER}
+USER non-root
+WORKDIR /home/non-root
 
 ENV GIT_COMMIT=${GIT_COMMIT} \
-    USER=${USER} \
-    HOME=/home/${USER} \
-    PATH="/home/${USER}/.local/bin:${PATH}" \
+    USER=non-root \
+    HOME=/home/non-root \
+    PATH="/home/non-root/.local/bin:${PATH}" \
     FLASK_APP=server.web
 
-COPY --chown=${USER}:${USER} ./requirements.txt ./requirements.txt
+COPY --chown=non-root:non-root ./requirements.txt ./requirements.txt
 
 RUN pip install --user -r ./requirements.txt && \
     pip cache purge && \
@@ -53,15 +49,15 @@ RUN pip install --user -r ./requirements.txt && \
 
 USER root
 
-RUN apt purge -y ${EXTRA_PKGS} && apt autoremove -y && \ 
+RUN apt purge -y gcc libc6-dev libcurl4-openssl-dev libssl-dev && apt autoremove -y && \ 
     apt clean -y && rm -rf /var/lib/apt/lists/*
 
-USER ${USER}
-WORKDIR /home/${USER}
+USER non-root
+WORKDIR /home/non-root
 
-COPY --chown=${USER}:${USER} ./client/pages ./client/pages
-COPY --chown=${USER}:${USER} ./server ./server
-COPY --from=nodejs_builder --chown=${USER}:${USER} /var/nodejs-temp/public ./client/public
+COPY --chown=non-root:non-root ./client/pages ./client/pages
+COPY --chown=non-root:non-root ./server ./server
+COPY --from=nodejs_builder --chown=non-root:non-root /var/nodejs-temp/public ./client/public
 
 # ---- Application Services ----
 # Add the following lines to the Dockerfile to include services
