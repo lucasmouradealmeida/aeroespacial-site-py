@@ -21,7 +21,7 @@ def create_app() -> Flask:
     app.secret_key = config.SESSION_SECRET
 
     # Configuração do Flask-Session
-    app.config["SESSION_TYPE"] = config.SESSION_TYPE
+    # app.config["SESSION_TYPE"] = config.SESSION_TYPE
     app.config["SESSION_PERMANENT"] = config.SESSION_PERMANENT
     app.config["PERMANENT_SESSION_LIFETIME"] = config.SESSION_LIFETIME
     app.config["SESSION_REFRESH_EACH_REQUEST"] = config.SESSION_REFRESH_REQUEST
