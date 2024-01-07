@@ -16,9 +16,9 @@
         <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
         <meta name="session" content="{{ csrf_token() }}" />
         <title>{% block title %}{% endblock %}</title>
-        <script>
+        <!-- <script>
             document.cookie = "csrf_token={{ csrf_token() }}; samesite=lax";
-        </script>
+        </script> -->
     </head>
 
     <body>

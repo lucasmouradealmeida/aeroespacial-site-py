@@ -2,7 +2,7 @@ from http import HTTPStatus
 
 from flask import Flask, flash, redirect, url_for
 from flask_session import Session
-from flask_wtf.csrf import CSRFProtect
+# from flask_wtf.csrf import CSRFProtect
 
 from server.config import get_config
 from server.registers import commands, routes
@@ -10,7 +10,7 @@ from server.registers import commands, routes
 
 def create_app() -> Flask:
     config = get_config()
-    csrf = CSRFProtect()
+    # csrf = CSRFProtect()
 
     app = Flask(
         config.APP_NAME,
@@ -38,6 +38,6 @@ def create_app() -> Flask:
 
     routes.init_app(app)
     commands.init_app(app)
-    csrf.init_app(app)
+    # csrf.init_app(app)
     Session(app)
     return app
