@@ -1,27 +1,64 @@
 services:
-  - name: aeroespacial-site-service # Name of the service
-    image: aeroespacial:latest # Image to use (from Docker Hub or a registry)
-    # Define environment variables, build commands, ports, etc. as needed
+  - name: aeroespacial-site-service
+    env:
+      - key: AMBIENTE
+        value: dev
+      - key: APP_SESSION_URL
+        value: redis://aeroespacial-redis-service:6379/0
+      - key: APP_BROKER_URL
+        value: redis://aeroespacial-redis-service:6379/1
+      - key: APP_BACKEND_URL
+        value: redis://aeroespacial-redis-service:6379/1
+      - key: APP_CACHE_URL
+        value: redis://aeroespacial-redis-service:6379/2
+    buildCommand: ./docker/app.dockerfile
+    healthCheckPath: /
 
   - name: aeroespacial-worker-service
-    image: aeroespacial:latest # Same image for this service
-    # Define environment variables, commands, etc.
+    env:
+      - key: AMBIENTE
+        value: dev
+      - key: APP_BROKER_URL
+        value: redis://aeroespacial-redis-service:6379/1
+      - key: APP_BACKEND_URL
+        value: redis://aeroespacial-redis-service:6379/1
+      - key: APP_CACHE_URL
+        value: redis://aeroespacial-redis-service:6379/2
+    buildCommand: ./docker/app.dockerfile
+    healthCheckPath: /
 
   - name: aeroespacial-nginx-service
-    image: aeroespacial/nginx:latest
-    # Define environment variables, ports, volumes, etc.
+    env:
+      - key: NGINX_WORKERS
+        value: "2"
+      - key: NGINX_ACCEPT_MUTEX
+        value: on
+      - key: NGINX_SERVER_APP
+        value: aeroespacial-site-service:5000
+      - key: NGINX_ACCESS_LOG
+        value: off
+      - key: NGINX_STATIC_FOLDER
+        value: /usr/share/nginx/html/static
+      - key: NGINX_TIMEOUT
+        value: "300"
+    buildCommand: ./docker/nginx.dockerfile
+    healthCheckPath: /
+    ports:
+      - 80:80
 
   - name: aeroespacial-redis-service
     image: redis:7.2.0-alpine3.18
-    # Define environment variables, if any
 
-# Define volumes if needed (check Render's documentation for syntax)
+volumes:
+  - name: aeroespacial-static-volume
 
-# Define a single-container web service to route traffic to aeroespacial-nginx-service
+networks:
+  - name: aeroespacial-network
+    external: false
+
 web:
   name: aeroespacial-web
-  ports:
-    - 80:80
-  env:
-    # Define any environment variables needed for the web service
-  # Define relationships between services if necessary
+  routes:
+    - type: rewrite
+      source: /
+      destination: aeroespacial-nginx-service:80
