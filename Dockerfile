@@ -99,10 +99,10 @@ ENV GIT_COMMIT=$GIT_COMMIT \
     NGINX_SERVER_APP=aeroespacial-site-service:5000 \
     NGINX_ACCESS_LOG=off \
     NGINX_STATIC_FOLDER=/usr/share/nginx/html/static \
-    NGINX_TIMEOUT=300 \
-  
+    NGINX_TIMEOUT=300
+
 RUN apt -qq update && \
-    apt install --no-install-recommends -y locales tzdata ssl-cert && \ 
+    apt install --no-install-recommends -y locales tzdata ssl-cert && \
     ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime && \
     dpkg-reconfigure --frontend noninteractive tzdata && \
     sed -i -e 's/# pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/' /etc/locale.gen && \
