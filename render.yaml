@@ -16,7 +16,7 @@ services:
     healthCheckPath: /
 
   - name: aeroespacial-worker-service
-    type: background
+    type: service
     env:
       - key: AMBIENTE
         value: dev
