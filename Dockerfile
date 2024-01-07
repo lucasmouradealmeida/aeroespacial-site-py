@@ -1,3 +1,4 @@
+# Use ARG before the FROM instruction
 ARG USER=non-root
 ARG EXTRA_PKGS="gcc libc6-dev"
 
@@ -17,10 +18,12 @@ RUN cd /var/nodejs-temp && \
 # ---- Python Image ----
 FROM python:3.11.6-slim-bookworm as app_release
 
+# Move ARGs to the top of the Dockerfile
 ARG USER
 ARG EXTRA_PKGS
 ARG GIT_COMMIT
 
+# Continue with the rest of the Dockerfile...
 ENV TZ=America/Sao_Paulo \
     LC_ALL=pt_BR.UTF-8 \
     LC_CTYPE=pt_BR.UTF-8 \
