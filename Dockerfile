@@ -81,4 +81,4 @@ COPY --from=nodejs_builder --chown=${USER}:${USER} /var/nodejs-temp/public ./cli
 CMD gunicorn -w 2 'server.web:app' -b '0.0.0.0:5000'
 
 # Service 2: aeroespacial-worker-service
-CMD celery -A server.worker worker --concurrency=2 -B --loglevel=ERROR -E
+# CMD celery -A server.worker worker --concurrency=2 -B --loglevel=ERROR -E
