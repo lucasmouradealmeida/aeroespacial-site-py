@@ -18,7 +18,7 @@ def create_app() -> Flask:
         static_folder=config.STATIC_FOLDER,
         static_url_path=config.STATIC_URL_PATH,
     )
-    app.secret_key = config.SESSION_SECRET
+    # app.secret_key = config.SESSION_SECRET
 
     # Configuração do Flask-Session
     # app.config["SESSION_TYPE"] = config.SESSION_TYPE
