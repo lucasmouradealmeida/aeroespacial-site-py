@@ -2,7 +2,7 @@
     <div class="main">
         <div class="menu">
             <div class="logo">
-                <svg class="ml-6 w-6 h-6 rotate-45 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                <svg class="ml-6 w-6 h-6 rotate-45 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                     <path d="m17.914 18.594-8-18a1 1 0 0 0-1.828 0l-8 18a1 1 0 0 0 1.157 1.376L8 18.281V9a1 1 0 0 1 2 0v9.281l6.758 1.689a1 1 0 0 0 1.156-1.376Z"/>
                 </svg>
             </div>
@@ -10,7 +10,7 @@
                 <a :class="['label', prefix.home]" href="#home" @click="menu('home')">Home</a>
                 <a :class="['label', prefix.explore]" href="#explore" @click="menu('explore')">Explore</a>
                 <div class="ml-4 mr-4 cursor-pointer" @click="userModal ? userModal = false : userModal = true">
-                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 11 14H9a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 10 19Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                     </svg>
                 </div>
@@ -105,11 +105,11 @@
                 </div>
 
                 <div class="cards">
-                    <div class="card">
+                    <div class="card cursor-pointer" @click="modalSolarSystema = true">
                         <div class="cardback"></div>
                         <div class="artworkSystem"></div>
                         <div class="backdropicon"></div>
-                        <svg @click="modalSolarSystema = true" class="expandcard w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+                        <svg @click="modalSolarSystema = true" class="expandcard w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 1h4m0 0v4m0-4-5 5.243M5 15H1m0 0v-4m0 4 5.243-5"/>
                         </svg>  
                         <div class="cardcontent">
@@ -118,11 +118,11 @@
                             <div class="divider"></div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card cursor-pointer" @click="modalPosicionamento = true">
                         <div class="cardback"></div>
                         <div class="artworkPosition"></div>
                         <div class="backdropicon"></div>
-                        <svg @click="modalPosicionamento = true" class="expandcard w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+                        <svg @click="modalPosicionamento = true" class="expandcard w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 1h4m0 0v4m0-4-5 5.243M5 15H1m0 0v-4m0 4 5.243-5"/>
                         </svg>  
                         <div class="cardcontent">
@@ -131,11 +131,11 @@
                             <div class="divider"></div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card cursor-pointer" @click="modalManobras = true">
                         <div class="cardback"></div>
                         <div class="artworkManobra"></div>
                         <div class="backdropicon"></div>
-                        <svg @click="modalManobras = true" class="expandcard w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+                        <svg @click="modalManobras = true" class="expandcard w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 1h4m0 0v4m0-4-5 5.243M5 15H1m0 0v-4m0 4 5.243-5"/>
                         </svg>
                         <div class="cardcontent">
@@ -144,11 +144,11 @@
                             <div class="divider"></div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card cursor-pointer" @click="modalLagrange = true" >
                         <div class="cardback"></div>
                         <div class="artworkLagrange"></div>
                         <div class="backdropicon"></div>
-                        <svg @click="modalLagrange = true" class="expandcard w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+                        <svg @click="modalLagrange = true" class="expandcard w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 1h4m0 0v4m0-4-5 5.243M5 15H1m0 0v-4m0 4 5.243-5"/>
                         </svg>
                         <div class="cardcontent">
@@ -187,7 +187,7 @@
         </template>
 
         <template v-slot:body>
-            
+            <div></div>
         </template>
 
         <template v-slot:footer>
