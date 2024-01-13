@@ -156,14 +156,14 @@
 
         <template v-slot:body>
             <div class="flex flex-row mb-4">
-                <div class="cursor-pointer w-1/2 flex justify-center" @click="signin = true, register = false">
+                <div :class="'cursor-pointer w-1/2 flex justify-center signin' + signin" @click="signin = true, register = false">
                     <svg class="w-6 h-6 blue-icon mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 8h6m-3 3V5m-6-.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0ZM5 11h3a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z"/>
                     </svg>
                     <a class="font-bold">Sign in</a>
                 </div>
 
-                <div class="cursor-pointer w-1/2 flex justify-center"  @click="signin = false, register = true">
+                <div :class="'cursor-pointer w-1/2 flex justify-center register' + register"  @click="signin = false, register = true">
                     <svg class="w-6 h-6 blue-icon mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 15">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 7.5h11m0 0L8 3.786M12 7.5l-4 3.714M12 1h3c.53 0 1.04.196 1.414.544.375.348.586.82.586 1.313v9.286c0 .492-.21.965-.586 1.313A2.081 2.081 0 0 1 15 14h-3"/>
                     </svg>
@@ -173,33 +173,28 @@
 
             <div>
                 <div class="flex flex-col justify-center" v-if="signin">
-                    <a>Username</a>
-                    <input class="input" type="text" placeholder="Username">
+                    <a class="font-semibold mb-2 mt-2">Username</a>
+                    <input class="input rounded-md p-1 mb-2" type="text">
 
-                    <a>Password</a>
-                    <input class="input" type="password" placeholder="Password">
+                    <a class="font-semibold mb-2 mt-2">Password</a>
+                    <input class="input rounded-md p-1 mb-2" type="password">
 
-                    <div class="flex flex-row justify-center">
-                        <input class="checkbox" type="checkbox">
-                        <a class="checkbox-label">Remember me</a>
-                    </div>
+                    <a class="flex cursor-pointer justify-center font-semibold mt-1 mb-3">Forgot Password</a>
 
-                    <a class="flex justify-center">Forgot Password</a>
-
-                    <button>Sign in</button>
+                    <button class="border-2 border-black rounded-lg p-1 font-bold">Sign in</button>
                 </div>
 
                 <div class="flex flex-col justify-center" v-if="register">
-                    <a>Username</a>
-                    <input class="input" type="text" placeholder="Username">
+                    <a class="font-semibold mb-2 mt-2">Username</a>
+                    <input class="input rounded-md p-1 mb-2" type="text">
 
-                    <a>Password</a>
-                    <input class="input" type="password" placeholder="Password">
+                    <a class="font-semibold mb-2 mt-2">Password</a>
+                    <input class="input rounded-md p-1 mb-2" type="password">
 
-                    <a>Confirm Password</a>
-                    <input class="input" type="password" placeholder="Confirm Password">
+                    <a class="font-semibold mb-2 mt-2">Confirm Password</a>
+                    <input class="input rounded-md p-1 mb-2" type="password">
 
-                    <button>Register</button>
+                    <button class="border-2 border-black rounded-lg p-1 font-bold mt-3">Register</button>
                 </div>
             </div>
         </template>
