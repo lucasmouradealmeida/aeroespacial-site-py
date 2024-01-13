@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <div class="menu">
-            <div class="logo">
+            <div class="logo flex flex-row">
                 <svg class="ml-6 w-6 h-6 rotate-45 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                     <path d="m17.914 18.594-8-18a1 1 0 0 0-1.828 0l-8 18a1 1 0 0 0 1.157 1.376L8 18.281V9a1 1 0 0 1 2 0v9.281l6.758 1.689a1 1 0 0 0 1.156-1.376Z"/>
                 </svg>
@@ -20,7 +20,7 @@
         <div class="content">
             <div v-show="home" class="content-home">
                 <div class="pagetitle">
-                    <label class="title">Engenharia Aeroespacial</label>
+                    <label class="title">Project ORION</label>
                 </div>
 
                 <div class="container">
@@ -30,7 +30,8 @@
                     <div class="divider"></div>
 
                     <div class="paragraph text-justify indent-12">
-                        O Engenheiro Aeroespacial incorpora o estado da arte da engenharia aplicada ao projeto, análise,
+                        Este projeto tem como intuito passar alguns dos conhecimentos aprendidos ao longo da graduação em Engenheira Aeroespacial. 
+                        Campo que incorpora o estado da arte da engenharia aplicada ao projeto, análise,
                         construção e testes de sistemas associados com o Setor Aeroespacial, envolvendo aeronaves, foguetes
                         e satélites artificiais. Seus conhecimentos incluem sistemas de propulsão, comunicação, controle de
                         aeronaves, navegação e interação homem-máquina.
