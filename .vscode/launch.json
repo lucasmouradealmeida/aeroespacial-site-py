@@ -5,6 +5,20 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Pytest: Current File",
+      "type": "python",
+      "request": "launch",
+      "module": "pytest",
+      "justMyCode": true,
+      "console": "integratedTerminal",
+      "env": {
+        // "_PYTEST_RAISE": "1",
+        "GRAPHQL_DEBUG": "1",
+        "PYTHONPATH": "${workspaceFolder}"
+      },
+      "args": ["-vv", "--no-cov", "${file}"]
+    },
+    {
       "name": "Python: Flask",
       "type": "python",
       "request": "launch",

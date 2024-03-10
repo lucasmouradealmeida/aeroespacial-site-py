@@ -106,6 +106,15 @@
                 </div>
 
                 <div class="cards">
+                    <div class="card cursor-pointer" @click="modalPousoLunar = true">
+                        <div class="cardback"></div>
+                        <svg @click="modalPousoLunar = true" class="expandcard w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 1h4m0 0v4m0-4-5 5.243M5 15H1m0 0v-4m0 4 5.243-5"/>
+                        </svg>  
+                        <div class="cardcontent">
+                            <div>Pouso Lunar</div>
+                        </div>
+                    </div>
                     <div class="card cursor-pointer" @click="modalSolarSystema = true">
                         <div class="cardback"></div>
                         <svg @click="modalSolarSystema = true" class="expandcard w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
@@ -149,6 +158,119 @@
 
         </div>
     </div>
+
+
+    <!-- Página do Pouso Lunar -->
+
+    <Modal v-show="modalPousoLunar">
+        <template v-slot:header>
+            <svg @click="modalPousoLunar = false" class="cursor-pointer w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="#222222" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m13 7-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+            </svg>
+        </template>
+
+        <template v-slot:body>
+           
+            <div class="font-bold text-3xl mb-8">Pouso Lunar</div>
+
+            <div class="font-medium text-xl mb-4">Simplificações</div>
+    
+            <ul class="list ml-6">
+                <li>O movimento é bidimensional</li>
+                <li>A massa é constante</li>
+            </ul>
+
+            
+            <div class="font-bold text-xl mb-4 mt-8">Range para eixo X</div>
+
+            <div class="flex flex-row">
+                <div class="flex flex-row mb-4">
+                    <div class="flex mr-4 items-center">Mínimo: </div>
+                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="graph_min" type="text">
+                </div>
+
+                <div class="flex flex-row mb-4">
+                    <div class="flex mr-4 items-center">Máximo: </div>
+                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="graph_max" type="text">
+                </div>
+
+                <div class="flex flex-row mb-4">
+                    <div class="flex mr-4 items-center">Step: </div>
+                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="graph_stepsize" type="text">
+                </div>
+            </div>
+
+
+            <button @click="graphRange" class="border-2 border-black rounded-lg p-1 font-bold mb-6">Modificar</button>
+
+
+            <LineChart :chart-data="data" :options="options" class="mt-10 mb-10 h-80" ref="pageChart"></LineChart>
+
+            <div class="font-bold text-xl mb-4">Curvas de Velocidade</div>
+            
+            <div class="flex flex-row mb-4">
+                <div class="mr-4 items-center">Cor da Curva: </div>
+                <input class="input rounded-md p-1" id="cv_curva_cor" type="color">
+            </div>
+
+            <div class="flex flex-row mb-4">
+                <div class="mr-4 items-center">Cor da ponto: </div>
+                <input class="input rounded-md p-1" id="cv_point_cor" type="color">
+            </div>
+
+            <div class="flex flex-col mb-4">
+
+                <div class="flex flex-row mb-4">
+                    <div class="mr-6 flex items-center">Label:</div>
+                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_label" type="text">
+                </div>
+
+
+                <div class="flex flex-row mb-4">
+                    <div class="mr-6 flex items-center">Altura incial:</div>
+                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_altura_inicial" type="text">
+                </div>
+
+                <div class="flex flex-row mb-4">
+                    <div class=" mr-6 flex items-center">Velocidade inicial:</div>
+                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_velocidade_inicial" type="text">
+                </div>
+
+                <div class="flex flex-row mb-4">
+                    <div class=" mr-6 flex items-center">Massa:</div>
+                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_massa" type="text">
+                </div>
+
+                <div class="flex flex-row mb-4">
+                    <div class=" mr-6 flex items-center">Gravidade:</div>
+                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_gravidade" type="text">
+                </div>
+
+                <div class="flex flex-row mb-4">
+                    <div class=" mr-6 flex items-center">Intensidade:</div>
+                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_intensidade" type="text">
+                </div>
+
+                <div class="flex flex-row mb-4">
+                    <div class=" mr-6 flex items-center">Ângulo:</div>
+                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_angulo" type="text">
+                </div>
+
+            </div>
+
+            <button @click="curvaVelocidade" class="border-2 border-black rounded-lg p-1 font-bold mb-6">Calcular</button>
+
+           
+        </template>
+
+        <template v-slot:footer>
+            <div></div>
+        </template>
+    </Modal>
+
+
+    <!-- Fim da página do pouso lunar  -->
+
 
     <UserModal v-show="userModal">
         <template v-slot:header>
@@ -275,12 +397,14 @@
 <script>
 import Modal from '@/components/Modal'
 import UserModal from '@/components/UserModal'
+import LineChart from './LineChart.vue'
 
 export default {
     name: "Home",
     components: {
         UserModal,
         Modal,
+        LineChart,
 
     },
     data() {
@@ -290,6 +414,7 @@ export default {
             modalPosicionamento: false,
             modalManobras: false,
             modalLagrange: false,
+            modalPousoLunar: false,
             prefix:{
                 home: 'selected',
                 explore: '',
@@ -298,6 +423,50 @@ export default {
             explore: false,
             signin: true,
             register: false,
+            loggedin: false,
+            data: {
+                datasets: [
+
+                ],
+            },
+            options: {
+                tension: 0.4,
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Velocidade Vertical'
+                        },
+                        type: 'linear',
+                        min: -20,
+                        max:10, // Define o range do eixo x
+                        ticks: {
+                            stepSize: 2 // Define o intervalo entre os ticks
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Altitude'
+                        }
+                    }
+                },
+                elements: {
+                    point: {
+                        radius: 0, // Define o raio do ponto como 0 para não exibir pontos
+                    },
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                    
+    
+                },
+            }
         }
     },
     created(){
@@ -330,6 +499,173 @@ export default {
             this.prefix[ref] = 'selected'
             this[ref] = true
         },
+        points(){
+            // {
+            //             label: 'Ponto Solto',
+            //             data: [null, null, null, 4, null, null, null], // Adicione null para os pontos sem valor
+            //             showLine: false, // Não exibir linha, apenas o ponto
+            //             pointRadius: 5, // Tamanho do ponto solto
+            //             pointBackgroundColor: 'red', // Cor do ponto solto
+            //         },
+        },
+        graphRange(){
+            const min = parseFloat(document.getElementById('graph_min').value);
+            const max = parseFloat(document.getElementById('graph_max').value);
+            const stepsize = parseFloat(document.getElementById('graph_stepsize').value);
+
+            this.options.scales.x.min = min;
+            this.options.scales.x.max = max;
+            this.options.scales.x.ticks.stepSize = stepsize;
+            this.options.scales.x.type = 'linear';
+
+            const pageChart = this.$refs.pageChart;
+            pageChart.update();
+        },
+        async curvaVelocidade(){
+            const y = parseInt(document.getElementById('cv_altura_inicial').value)
+            const x = parseInt(document.getElementById('cv_velocidade_inicial').value)
+            const corCurva = document.getElementById('cv_curva_cor').value
+            const corPonto = document.getElementById('cv_point_cor').value
+            const nome = document.getElementById('cv_label').value
+            const massa = parseFloat(document.getElementById('cv_massa').value)
+            const gravidade = parseFloat(document.getElementById('cv_gravidade').value)
+            const intensidade = parseFloat(document.getElementById('cv_intensidade').value)
+            const angulacao = parseFloat(document.getElementById('cv_angulo').value)
+
+
+            const rawResponse = await fetch('/pouso/curva/velocidade', {
+                method: 'POST',
+                headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.cookie.replace(/(?:(?:^|.*;\s*)csrf_token\s*=\s*([^;]*).*$)|^.*$/, '$1')
+                },
+                body: JSON.stringify({
+                    massa: massa,
+                    gravidade: gravidade,
+                    intensidade: intensidade,
+                    angulacao: angulacao,
+                    altura: y,
+                    velocidade_inicial: x,
+                })
+            })
+
+            const content = await rawResponse.json()
+            this.addCurvaVelocidade(content.velocidade, content.altura, corCurva, nome, corPonto, x, y)
+
+        },
+        addCurvaVelocidade(velocidade, altura, corCurva, nome, corPonto, x, y){
+
+            let dados = []
+
+            // Monta os objetos {x, y} para cada par de valores
+            for (let i = 0; i < velocidade.length; i++) {
+                dados.push({ x: velocidade[i], y: altura[i] });
+            }
+
+            const newDataset = {
+                label: nome,
+                data: dados,
+                borderColor: corCurva,
+                backgroundColor: 'transparent',
+                borderWidth: 1
+            }
+
+            this.data.datasets.push(newDataset)
+
+            // Criar um novo conjunto de dados com o ponto adicionado
+            const newPoint = {
+                label: 'Ponto: ' + nome,
+                data: [{x: x, y: y}],
+                showLine: false,
+                pointRadius: 5,
+                pointBackgroundColor: corPonto,
+                borderColor: corPonto,
+                backgroundColor: corPonto,
+            };
+
+            this.data.datasets.push(newPoint)
+
+            const pageChart = this.$refs.pageChart
+            pageChart.update()
+
+        },
+        addPointToDataset() {
+           
+            const y = parseFloat(document.getElementById('cv_altura_inicial').value)
+            const x = parseFloat(document.getElementById('cv_velocidade_inicial').value)
+            const cor = document.getElementById('cv_point_cor').value
+            const nome = document.getElementById('cv_label').value
+
+            // Encontrar o índice correspondente ao valor x no array de labels
+            const index = this.data.labels.reduce((prevIndex, label, i) => {
+                const labelValue = parseFloat(label);
+                const prevLabelValue = parseFloat(this.data.labels[prevIndex]);
+                const xValue = parseFloat(x.toFixed(1));
+
+                const diff = Math.abs(labelValue - xValue);
+                const prevDiff = Math.abs(prevLabelValue - xValue);
+
+                return diff < prevDiff ? i : prevIndex;
+            }, 0);
+
+            // Criar um novo conjunto de dados com o ponto adicionado
+            const newDataset = {
+                label: nome,
+                data: this.data.labels.map((label, i) => (i === index ? y : null)),
+                showLine: false,
+                pointRadius: 5,
+                pointBackgroundColor: cor,
+                borderColor: cor,
+                backgroundColor: cor,
+            };
+
+            // Adicionar o novo conjunto de dados ao array de datasets
+            this.data.datasets.push(newDataset);
+            // Atualizar o gráfico
+            const pageChart = this.$refs.pageChart
+            pageChart.update()
+
+        },
+        async curvasPousoSuave(){
+            const rawResponse = await fetch('/pouso/lunar/suave', {
+                method: 'POST',
+                headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.cookie.replace(/(?:(?:^|.*;\s*)csrf_token\s*=\s*([^;]*).*$)|^.*$/, '$1')
+                },
+                body: JSON.stringify({
+                    massa: 1.1,
+                    gravidade: 1.8,
+                    intensidade: 3.6,
+                    angulacao: 0,
+                    altura: 18,
+                    velocidade_inicial: -7,
+                })
+            })
+
+            const content = await rawResponse.json()
+            return content
+
+
+
+            // {
+            //             label: ,
+            //             data: [65, 59, 80, 81, 56, 55, 100],
+            //             fill: false,
+            //             borderColor: 'rgb(75, 192, 192)',
+            //             tension: 0.4,
+            //         },
+        },
+        linspace(start, end, n) {
+            const step = (end - start) / (n - 1);
+            const result = [];
+            for (let i = 0; i < n; i++) {
+                result.push((start + i * step).toFixed(1));
+            }
+            return result;
+        }
     }
 }
 </script>

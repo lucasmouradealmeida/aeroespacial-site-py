@@ -83,9 +83,7 @@ def run_flower():
 
 
 def run_makerequirements():
-    run_shell(
-        "poetry export -f requirements.txt --without-hashes --output requirements.txt"
-    )
+    run_shell("poetry export -f requirements.txt --without-hashes --output requirements.txt")
 
 
 def run_format():
@@ -129,11 +127,7 @@ def run_redis_down():
 
 
 def run_redis_clean():
-    cmd = (
-        "cd ./docker && "
-        "docker compose -f redis.yaml down -v && "
-        "docker compose -f redis.yaml up -d"
-    )
+    cmd = "cd ./docker && " "docker compose -f redis.yaml down -v && " "docker compose -f redis.yaml up -d"
     run_shell(cmd)
 
 

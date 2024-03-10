@@ -12,11 +12,10 @@ def init_app(app: Flask):
         app (Flask): Instancia do Flask.
     """
     try:
-        from server.controllers import (
-            home_controller,
-        )
+        from server.controllers import home_controller, pouso_lunar_controller
 
         app.register_blueprint(home_controller.bp)
+        app.register_blueprint(pouso_lunar_controller.bp)
 
     except Exception as err:
         logger.error(err, exc_info=True)
