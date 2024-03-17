@@ -173,93 +173,126 @@
            
             <div class="font-bold text-3xl mb-8">Pouso Lunar</div>
 
-            <div class="font-medium text-xl mb-4">Simplificações</div>
+            <div class="flex flex-col md:flex-row xl:flex-row">
+                <div class="flex-col mr-10">
+                    <div class="font-medium text-xl mb-4 mt-4">Simplificações</div>
     
-            <ul class="list ml-6">
-                <li>O movimento é bidimensional</li>
-                <li>A massa é constante</li>
-            </ul>
+                    <ul class="list ml-6">
+                        <li>O movimento é bidimensional</li>
+                        <li>A massa é constante</li>
+                    </ul>
+                </div>
 
+                <div class="flex-col">
+                    <div class="font-medium text-xl mb-4 mt-4">Equações</div>
+    
+                    <ul class="list ml-6">
+                        <li>Terceira Lei de Newton</li>
+                        <li>Torricelli</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="flex flex-row items-center  mb-8 mt-8">
+                <div @click="contentHS('axis')" class="w-6 h-6 black cursor-pointer axis rotate-180 mr-2">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7"/>
+                    </svg>
+                </div>
+
+                <div class="font-bold text-xl mr-4">Range para eixo X</div>
+            </div>
+
+            <div class="hidden axis-content justify-center align-middle items-center">
+
+                <div class="flex-col md:flex-row xl:flex-row">
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="flex mr-4 items-center w-20 md:w-40 xl:w-40">Mínimo: </div>
+                        <input class="flex input rounded-md p-1 border-2 border-black w-30" id="graph_min" type="text">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="flex mr-4 items-center w-20 md:w-40 xl:w-40">Máximo: </div>
+                        <input class="flex input rounded-md p-1 w-30 border-2 border-black" id="graph_max" type="text">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="flex mr-4 items-center w-20 md:w-40 xl:w-40">Step: </div>
+                        <input class="flex input rounded-md p-1 w-30 border-2 border-black" id="graph_stepsize" type="text">
+                    </div>
+                </div>
+
+                <button @click="graphRange" class="border-2 border-black rounded-lg p-1 font-bold h-fit w-60 mt-4 mb-6">Modificar</button>
+
+            </div>
             
-            <div class="font-bold text-xl mb-4 mt-8">Range para eixo X</div>
-
-            <div class="flex flex-row">
-                <div class="flex flex-row mb-4">
-                    <div class="flex mr-4 items-center">Mínimo: </div>
-                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="graph_min" type="text">
+            <div class="flex flex-row items-center mb-8">
+                <div @click="contentHS('cvel')" class="w-6 h-6 black cursor-pointer cvel rotate-180 mr-2">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7"/>
+                    </svg>
                 </div>
 
-                <div class="flex flex-row mb-4">
-                    <div class="flex mr-4 items-center">Máximo: </div>
-                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="graph_max" type="text">
+                <div class="font-bold text-xl mr-4">Curvas de Velocidade</div>
+            </div>
+
+            <div class="hidden cvel-content justify-center align-middle items-center">
+
+                <div class="flex-col md:flex-row xl:flex-row">
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="first-line:flex mr-4 items-center w-20 md:w-40 xl:w-40">Curva: </div>
+                        <input class="input rounded-md p-1 mr-4" id="cv_curva_cor" type="color">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="first-line:flex mr-4 items-center w-20 md:w-40 xl:w-40">Ponto: </div>
+                        <input class="input rounded-md p-1" id="cv_point_cor" type="color">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="first-line:flex mr-4 items-center w-20 md:w-40 xl:w-40">Label: </div>
+                        <input class="input rounded-md p-1 border-2 border-black w-1/2" id="cv_label" type="text">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="first-line:flex mr-4 items-center w-20 md:w-40 xl:w-40">Altura inicial: </div>
+                        <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_altura_inicial" type="text">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="first-line:flex mr-4 items-center w-20 md:w-40 xl:w-40">Velocidade inicial: </div>
+                        <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_velocidade_inicial" type="text">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="first-line:flex mr-4 items-center w-20 md:w-40 xl:w-40">Massa: </div>
+                        <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_massa" type="text">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="first-line:flex mr-4 items-center w-20 md:w-40 xl:w-40">Gravidade: </div>
+                        <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_gravidade" type="text">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="first-line:flex mr-4 items-center w-20 md:w-40 xl:w-40">Intensidade: </div>
+                        <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_intensidade" type="text">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="first-line:flex mr-4 items-center w-20 md:w-40 xl:w-40">Ângulo: </div>
+                        <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_angulo" type="text">
+                    </div>
                 </div>
 
-                <div class="flex flex-row mb-4">
-                    <div class="flex mr-4 items-center">Step: </div>
-                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="graph_stepsize" type="text">
-                </div>
+                <button @click="curvaVelocidade" class="border-2 border-black rounded-lg p-1 font-bold h-fit w-60 mt-4 mb-6">Calcular</button>
+
             </div>
 
 
-            <button @click="graphRange" class="border-2 border-black rounded-lg p-1 font-bold mb-6">Modificar</button>
 
-
-            <LineChart :chart-data="data" :options="options" class="mt-10 mb-10 h-80" ref="pageChart"></LineChart>
-
-            <div class="font-bold text-xl mb-4">Curvas de Velocidade</div>
-            
-            <div class="flex flex-row mb-4">
-                <div class="mr-4 items-center">Cor da Curva: </div>
-                <input class="input rounded-md p-1" id="cv_curva_cor" type="color">
-            </div>
-
-            <div class="flex flex-row mb-4">
-                <div class="mr-4 items-center">Cor da ponto: </div>
-                <input class="input rounded-md p-1" id="cv_point_cor" type="color">
-            </div>
-
-            <div class="flex flex-col mb-4">
-
-                <div class="flex flex-row mb-4">
-                    <div class="mr-6 flex items-center">Label:</div>
-                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_label" type="text">
-                </div>
-
-
-                <div class="flex flex-row mb-4">
-                    <div class="mr-6 flex items-center">Altura incial:</div>
-                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_altura_inicial" type="text">
-                </div>
-
-                <div class="flex flex-row mb-4">
-                    <div class=" mr-6 flex items-center">Velocidade inicial:</div>
-                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_velocidade_inicial" type="text">
-                </div>
-
-                <div class="flex flex-row mb-4">
-                    <div class=" mr-6 flex items-center">Massa:</div>
-                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_massa" type="text">
-                </div>
-
-                <div class="flex flex-row mb-4">
-                    <div class=" mr-6 flex items-center">Gravidade:</div>
-                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_gravidade" type="text">
-                </div>
-
-                <div class="flex flex-row mb-4">
-                    <div class=" mr-6 flex items-center">Intensidade:</div>
-                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_intensidade" type="text">
-                </div>
-
-                <div class="flex flex-row mb-4">
-                    <div class=" mr-6 flex items-center">Ângulo:</div>
-                    <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="cv_angulo" type="text">
-                </div>
-
-            </div>
-
-            <button @click="curvaVelocidade" class="border-2 border-black rounded-lg p-1 font-bold mb-6">Calcular</button>
-
+            <LineChart :chart-data="data" :options="options" class="flex justify-center items-center w-full mt-2 mb-2 md:h-80 xl:h-80" ref="pageChart"></LineChart>
            
         </template>
 
@@ -498,6 +531,22 @@ export default {
 
             this.prefix[ref] = 'selected'
             this[ref] = true
+        },
+        contentHS(baseClass){
+            let className = document.getElementsByClassName(baseClass)[0].className
+            let classContent = document.getElementsByClassName(baseClass + '-content')[0].className
+
+            if(className.includes('180')){
+                className = className.replace('rotate-180', 'rotate-0')
+                document.getElementsByClassName(baseClass)[0].className = className
+                classContent = classContent.replace('hidden', 'flex flex-col')
+                document.getElementsByClassName(baseClass + '-content')[0].className = classContent
+            } else {
+                className = className.replace('rotate-0', 'rotate-180')
+                document.getElementsByClassName(baseClass)[0].className = className
+                classContent = classContent.replace('flex flex-col', 'hidden')
+                document.getElementsByClassName(baseClass + '-content')[0].className = classContent
+            }
         },
         points(){
             // {
