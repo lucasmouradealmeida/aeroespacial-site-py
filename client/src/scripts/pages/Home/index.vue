@@ -299,9 +299,7 @@
         </template>
     </Modal>
 
-
     <!-- Fim da página do pouso lunar  -->
-
 
     <UserModal v-show="userModal">
         <template v-slot:header>
