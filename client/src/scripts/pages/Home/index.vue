@@ -290,8 +290,6 @@
 
             </div>
 
-
-
             <LineChart :chart-data="data" :options="options" class="flex justify-center items-center w-full mt-2 mb-2 md:h-80 xl:h-80" ref="pageChart"></LineChart>
            
         </template>
