@@ -115,7 +115,8 @@
                             <div>Pouso Lunar</div>
                         </div>
                     </div>
-                    <div class="card cursor-pointer" @click="modalSolarSystema = true">
+
+                    <!-- <div class="card cursor-pointer" @click="modalSolarSystema = true">
                         <div class="cardback"></div>
                         <svg @click="modalSolarSystema = true" class="expandcard w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 1h4m0 0v4m0-4-5 5.243M5 15H1m0 0v-4m0 4 5.243-5"/>
@@ -123,8 +124,9 @@
                         <div class="cardcontent">
                             <div>Sistema Solar</div>
                         </div>
-                    </div>
-                    <div class="card cursor-pointer" @click="modalPosicionamento = true">
+                    </div> -->
+
+                    <!-- <div class="card cursor-pointer" @click="modalPosicionamento = true">
                         <div class="cardback"></div>
                         <svg @click="modalPosicionamento = true" class="expandcard w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 1h4m0 0v4m0-4-5 5.243M5 15H1m0 0v-4m0 4 5.243-5"/>
@@ -132,8 +134,9 @@
                         <div class="cardcontent">
                             <div>Posicionamento de Satélites</div>
                         </div>
-                    </div>
-                    <div class="card cursor-pointer" @click="modalManobras = true">
+                    </div> -->
+
+                    <!-- <div class="card cursor-pointer" @click="modalManobras = true">
                         <div class="cardback"></div>
                         <svg @click="modalManobras = true" class="expandcard w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 1h4m0 0v4m0-4-5 5.243M5 15H1m0 0v-4m0 4 5.243-5"/>
@@ -141,8 +144,9 @@
                         <div class="cardcontent">
                             <div>Manobras Orbitais</div>
                         </div>
-                    </div>
-                    <div class="card cursor-pointer" @click="modalLagrange = true" >
+                    </div> -->
+
+                    <!-- <div class="card cursor-pointer" @click="modalLagrange = true" >
                         <div class="cardback"></div>
                         <svg @click="modalLagrange = true" class="expandcard w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 1h4m0 0v4m0-4-5 5.243M5 15H1m0 0v-4m0 4 5.243-5"/>
@@ -150,7 +154,7 @@
                         <div class="cardcontent">
                             <div>Pontos de Lagrange</div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
