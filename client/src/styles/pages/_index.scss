@@ -172,7 +172,15 @@ html {
     transition: transform 0.5s ease-in-out;
 }
 
+.axisY {
+    transition: transform 0.5s ease-in-out;
+}
+
 .cvel {
+    transition: transform 0.5s ease-in-out;
+}
+
+.cpouso {
     transition: transform 0.5s ease-in-out;
 }
 
@@ -180,7 +188,15 @@ html {
     transition: transform 0.5s ease-in-out;
 }
 
+.axisY-content {
+    transition: transform 0.5s ease-in-out;
+}
+
 .cvel-content {
+    transition: transform 0.5s ease-in-out;
+}
+
+.cpouso-content {
     transition: transform 0.5s ease-in-out;
 }
 

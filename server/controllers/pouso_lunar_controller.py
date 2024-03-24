@@ -36,3 +36,28 @@ def curva_velocidade(ctx: Context):
 
     # Retorna os dados em formato JSON
     return jsonify(velocidade=vf, altura=y)
+
+
+@bp.route("/pouso/curva/pouso/suave", methods=["POST"], endpoint="cps")
+@with_context()
+def curva_pouso_suave(ctx: Context):
+    query = request.get_json()
+    data = VelocidadesResource(**query)
+    result = pouso_lunar.curvas_de_pouso_suave(data)
+
+    # Encontra os índices dos elementos NaN
+    nan_indices = np.isnan(result["velocidade"])
+
+    # Remove os elementos NaN do array velocidade e altura
+    velocidades = result["velocidade"][~nan_indices]
+    y = result["altura"][~nan_indices]
+
+    # Arredonda os valores para uma casa decimal
+    velocidades = np.round(velocidades, 2)
+    y = np.round(y, 2)
+
+    v = velocidades.tolist()
+    y = y.tolist()
+
+    # Retorna os dados em formato JSON
+    return jsonify(velocidade=v, altura=y)

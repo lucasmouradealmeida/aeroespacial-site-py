@@ -223,7 +223,40 @@
                     </div>
                 </div>
 
-                <button @click="graphRange" class="border-2 border-black rounded-lg p-1 font-bold h-fit w-60 mt-4 mb-6">Modificar</button>
+                <button @click="graphRangeX" class="border-2 border-black rounded-lg p-1 font-bold h-fit w-60 mt-4 mb-6">Modificar</button>
+
+            </div>
+
+            <div class="flex flex-row items-center  mb-8 ">
+                <div @click="contentHS('axisY')" class="w-6 h-6 black cursor-pointer axisY rotate-180 mr-2">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7"/>
+                    </svg>
+                </div>
+
+                <div class="font-bold text-xl mr-4">Range para eixo Y</div>
+            </div>
+
+            <div class="hidden axisY-content justify-center align-middle items-center">
+
+                <div class="flex-col md:flex-row xl:flex-row">
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="flex mr-4 items-center w-20 md:w-40 xl:w-40">Mínimo: </div>
+                        <input class="flex input rounded-md p-1 border-2 border-black w-30" id="graph_min_y" type="text">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="flex mr-4 items-center w-20 md:w-40 xl:w-40">Máximo: </div>
+                        <input class="flex input rounded-md p-1 w-30 border-2 border-black" id="graph_max_y" type="text">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="flex mr-4 items-center w-20 md:w-40 xl:w-40">Step: </div>
+                        <input class="flex input rounded-md p-1 w-30 border-2 border-black" id="graph_stepsize_y" type="text">
+                    </div>
+                </div>
+
+                <button @click="graphRangeY" class="border-2 border-black rounded-lg p-1 font-bold h-fit w-60 mt-4 mb-6">Modificar</button>
 
             </div>
             
@@ -290,8 +323,60 @@
 
             </div>
 
+
+            <div class="flex flex-row items-center mb-8">
+                <div @click="contentHS('cpouso')" class="w-6 h-6 black cursor-pointer cpouso rotate-180 mr-2">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7"/>
+                    </svg>
+                </div>
+
+                <div class="font-bold text-xl mr-4">Curvas de Pouso Suave</div>
+            </div>
+
+            <div class="hidden cpouso-content justify-center align-middle items-center">
+
+                <div class="flex-col md:flex-row xl:flex-row">
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="first-line:flex mr-4 items-center w-20 md:w-40 xl:w-40">Curva: </div>
+                        <input class="input rounded-md p-1 mr-4" id="ps_curva_cor" type="color">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="first-line:flex mr-4 items-center w-20 md:w-40 xl:w-40">Label: </div>
+                        <input class="input rounded-md p-1 border-2 border-black w-1/2" id="ps_label" type="text">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="first-line:flex mr-4 items-center w-20 md:w-40 xl:w-40">Massa: </div>
+                        <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="ps_massa" type="text">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="first-line:flex mr-4 items-center w-20 md:w-40 xl:w-40">Gravidade: </div>
+                        <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="ps_gravidade" type="text">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="first-line:flex mr-4 items-center w-20 md:w-40 xl:w-40">Intensidade: </div>
+                        <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="ps_intensidade" type="text">
+                    </div>
+
+                    <div class="flex flex-row mb-4 md:mr-4 xl:mr-4">
+                        <div class="first-line:flex mr-4 items-center w-20 md:w-40 xl:w-40">Ângulo: </div>
+                        <input class="input rounded-md p-1 w-1/2 border-2 border-black" id="ps_angulo" type="text">
+                    </div>
+                </div>
+
+                <button @click="curvaPousoSuave" class="border-2 border-black rounded-lg p-1 font-bold h-fit w-60 mt-4 mb-6">Calcular</button>
+            </div>
+
+            <div class="w-full flex justify-end">
+                <button @click="resetGraph" class="border-2 border-black rounded-lg p-1 font-bold h-fit w-40 mt-4 mb-6">Reset</button>
+            </div>
+
             <LineChart :chart-data="data" :options="options" class="flex justify-center items-center w-full mt-2 mb-2 md:h-80 xl:h-80" ref="pageChart"></LineChart>
-           
+
         </template>
 
         <template v-slot:footer>
@@ -480,6 +565,12 @@ export default {
                         title: {
                             display: true,
                             text: 'Altitude'
+                        },
+                        type: 'linear',
+                        min: -20,
+                        max:10, // Define o range do eixo x
+                        ticks: {
+                            stepSize: 2 // Define o intervalo entre os ticks
                         }
                     }
                 },
@@ -544,16 +635,7 @@ export default {
                 document.getElementsByClassName(baseClass + '-content')[0].className = classContent
             }
         },
-        points(){
-            // {
-            //             label: 'Ponto Solto',
-            //             data: [null, null, null, 4, null, null, null], // Adicione null para os pontos sem valor
-            //             showLine: false, // Não exibir linha, apenas o ponto
-            //             pointRadius: 5, // Tamanho do ponto solto
-            //             pointBackgroundColor: 'red', // Cor do ponto solto
-            //         },
-        },
-        graphRange(){
+        graphRangeX(){
             const min = parseFloat(document.getElementById('graph_min').value);
             const max = parseFloat(document.getElementById('graph_max').value);
             const stepsize = parseFloat(document.getElementById('graph_stepsize').value);
@@ -562,6 +644,19 @@ export default {
             this.options.scales.x.max = max;
             this.options.scales.x.ticks.stepSize = stepsize;
             this.options.scales.x.type = 'linear';
+
+            const pageChart = this.$refs.pageChart;
+            pageChart.update();
+        },
+        graphRangeY(){
+            const min = parseFloat(document.getElementById('graph_min_y').value);
+            const max = parseFloat(document.getElementById('graph_max_y').value);
+            const stepsize = parseFloat(document.getElementById('graph_stepsize_y').value);
+
+            this.options.scales.y.min = min;
+            this.options.scales.y.max = max;
+            this.options.scales.y.ticks.stepSize = stepsize;
+            this.options.scales.y.type = 'linear';
 
             const pageChart = this.$refs.pageChart;
             pageChart.update();
@@ -599,6 +694,39 @@ export default {
             this.addCurvaVelocidade(content.velocidade, content.altura, corCurva, nome, corPonto, x, y)
 
         },
+        resetGraph(){
+            this.data.datasets = []
+            const pageChart = this.$refs.pageChart
+            pageChart.update()
+        },
+        async curvaPousoSuave(){
+            const corCurva = document.getElementById('ps_curva_cor').value
+            const nome = document.getElementById('ps_label').value
+            const massa = parseFloat(document.getElementById('ps_massa').value)
+            const gravidade = parseFloat(document.getElementById('ps_gravidade').value)
+            const intensidade = parseFloat(document.getElementById('ps_intensidade').value)
+            const angulacao = parseFloat(document.getElementById('ps_angulo').value)
+
+
+            const rawResponse = await fetch('/pouso/curva/pouso/suave', {
+                method: 'POST',
+                headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.cookie.replace(/(?:(?:^|.*;\s*)csrf_token\s*=\s*([^;]*).*$)|^.*$/, '$1')
+                },
+                body: JSON.stringify({
+                    massa: massa,
+                    gravidade: gravidade,
+                    intensidade: intensidade,
+                    angulacao: angulacao,
+                })
+            })
+
+            const content = await rawResponse.json()
+            this.addCurvaVelocidade(content.velocidade, content.altura, corCurva, nome, null, null, null)
+
+        },
         addCurvaVelocidade(velocidade, altura, corCurva, nome, corPonto, x, y){
 
             let dados = []
@@ -619,17 +747,19 @@ export default {
             this.data.datasets.push(newDataset)
 
             // Criar um novo conjunto de dados com o ponto adicionado
-            const newPoint = {
-                label: 'Ponto: ' + nome,
-                data: [{x: x, y: y}],
-                showLine: false,
-                pointRadius: 5,
-                pointBackgroundColor: corPonto,
-                borderColor: corPonto,
-                backgroundColor: corPonto,
-            };
+            if (corPonto && x && y) {
+                const newPoint = {
+                    label: 'Ponto: ' + nome,
+                    data: [{x: x, y: y}],
+                    showLine: false,
+                    pointRadius: 5,
+                    pointBackgroundColor: corPonto,
+                    borderColor: corPonto,
+                    backgroundColor: corPonto,
+                };
 
-            this.data.datasets.push(newPoint)
+                this.data.datasets.push(newPoint)
+            }
 
             const pageChart = this.$refs.pageChart
             pageChart.update()
