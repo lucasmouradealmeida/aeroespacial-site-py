@@ -476,72 +476,72 @@
 
                 <div v-if="selectedObject != null">
                     <div class="bgblack mt-6 p-4 rounded-md">
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">Argumento do Perigeu:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">Argumento do Perigeu:</div>
                             <input :value="selectedObject.ARG_OF_PERICENTER" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">BStar:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">BStar:</div>
                             <input :value="selectedObject.BSTAR" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">Classificação:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">Classificação:</div>
                             <input :value="selectedObject.CLASSIFICATION_TYPE" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">Excentricidade:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">Excentricidade:</div>
                             <input :value="selectedObject.ECCENTRICITY" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">Element Set No:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">Element Set No:</div>
                             <input :value="selectedObject.ELEMENT_SET_NO" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">Tipo de ephemeris:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">Tipo de ephemeris:</div>
                             <input :value="selectedObject.EPHEMERIS_TYPE" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">Epoch:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">Epoch:</div>
                             <input :value="selectedObject.EPOCH" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">Inclinação:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">Inclinação:</div>
                             <input :value="selectedObject.INCLINATION" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">Anomalia Média:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">Anomalia Média:</div>
                             <input :value="selectedObject.MEAN_ANOMALY" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">Movimento Médio:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">Movimento Médio:</div>
                             <input :value="selectedObject.MEAN_MOTION" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">Movimento Médio DDot:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">Movimento Médio DDot:</div>
                             <input :value="selectedObject.MEAN_MOTION_DDOT" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">Movimento Médio Dot:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">Movimento Médio Dot:</div>
                             <input :value="selectedObject.MEAN_MOTION_DOT" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">NORAD CAT ID:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">NORAD CAT ID:</div>
                             <input :value="selectedObject.NORAD_CAT_ID" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">Object ID:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">Object ID:</div>
                             <input :value="selectedObject.OBJECT_ID" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">Object Name:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">Object Name:</div>
                             <input :value="selectedObject.OBJECT_NAME" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">RA do Nodo ascendente:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">RA do Nodo ascendente:</div>
                             <input :value="selectedObject.RA_OF_ASC_NODE" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
-                        <div class="flex mb-4 text-gray-300">
-                            <div class="mr-4 w-1/3">Rev at Epoch:</div>
+                        <div class="flex flex-col md:flex-row xl:flex-row mb-4 text-gray-300">
+                            <div class="mr-4 w-full">Rev at Epoch:</div>
                             <input :value="selectedObject.REV_AT_EPOCH" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
                         </div>
                     </div>
