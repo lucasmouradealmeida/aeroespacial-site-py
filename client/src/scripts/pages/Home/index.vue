@@ -2,18 +2,24 @@
     <div class="main">
         <div class="menu">
             <div class="logo flex flex-row">
-                <svg class="ml-6 w-6 h-6 rotate-45 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-                    <path d="m17.914 18.594-8-18a1 1 0 0 0-1.828 0l-8 18a1 1 0 0 0 1.157 1.376L8 18.281V9a1 1 0 0 1 2 0v9.281l6.758 1.689a1 1 0 0 0 1.156-1.376Z"/>
+                <svg fill="#ffffff" class="ml-6 mt-6 w-10 h-10 rotate-90 text-white" version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                    viewBox="0 0 32 32" xml:space="preserve">
+                    <g>
+                        <path d="M16,9c-3.9,0-7,3.1-7,7s3.1,7,7,7s7-3.1,7-7S19.9,9,16,9z"/>
+                        <path d="M27.7,8.3C27.9,7.9,28,7.5,28,7c0-1.7-1.3-3-3-3c-0.5,0-0.9,0.1-1.3,0.3C21.4,2.8,18.8,2,16,2C8.3,2,2,8.3,2,16
+                            s6.3,14,14,14s14-6.3,14-14C30,13.2,29.2,10.6,27.7,8.3z M16,28C9.4,28,4,22.6,4,16S9.4,4,16,4c2.2,0,4.4,0.6,6.3,1.8
+                            C22.1,6.1,22,6.6,22,7c0,1.7,1.3,3,3,3c0.4,0,0.9-0.1,1.2-0.3c1.2,1.9,1.8,4,1.8,6.3C28,22.6,22.6,28,16,28z"/>
+                    </g>
                 </svg>
             </div>
             <div class="pages">
                 <a :class="['label', prefix.home]" href="#home" @click="menu('home')">Home</a>
                 <a :class="['label', prefix.explore]" href="#explore" @click="menu('explore')">Explore</a>
-                <div class="ml-4 mr-4 cursor-pointer" @click="userModal ? userModal = false : userModal = true">
+                <!-- <div class="ml-4 mr-4 cursor-pointer" @click="userModal ? userModal = false : userModal = true">
                     <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 11 14H9a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 10 19Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                     </svg>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -116,6 +122,16 @@
                         </div>
                     </div>
 
+                    <div class="card cursor-pointer" @click="modalCelestrak = true">
+                        <div class="cardback"></div>
+                        <svg @click="modalCelestrak = true" class="expandcard w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 1h4m0 0v4m0-4-5 5.243M5 15H1m0 0v-4m0 4 5.243-5"/>
+                        </svg>  
+                        <div class="cardcontent">
+                            <div>Two Lines</div>
+                        </div>
+                    </div>
+
                     <!-- <div class="card cursor-pointer" @click="modalSolarSystema = true">
                         <div class="cardback"></div>
                         <svg @click="modalSolarSystema = true" class="expandcard w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
@@ -174,10 +190,19 @@
         </template>
 
         <template v-slot:body>
-           
             <div class="font-bold text-3xl mb-8">Pouso Lunar</div>
 
-            <div class="flex flex-col md:flex-row xl:flex-row">
+            <div class="flex flex-row items-center mt-8">
+                <div @click="contentHS('cont')" class="w-6 h-6 black cursor-pointer cont rotate-180 mr-2">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7"/>
+                    </svg>
+                </div>
+
+                <div class="font-bold text-xl mr-4">Conteúdo</div>
+            </div>
+
+            <div class="flex-col hidden cont-content md:flex-row xl:flex-row">
                 <div class="flex-col mr-10">
                     <div class="font-medium text-xl mb-4 mt-4">Simplificações</div>
     
@@ -388,9 +413,106 @@
         </template>
     </Modal>
 
-    <!-- Fim da página do pouso lunar  -->
+    <!-- Fim da página do pouso lunar -->
 
-    <UserModal v-show="userModal">
+    <!-- Inicio da página do twolines -->
+    <Modal v-show="modalCelestrak">
+        <template v-slot:header>
+            <svg @click="modalCelestrak = false" class="cursor-pointer w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="#222222" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m13 7-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+            </svg>
+
+            
+        </template>
+
+        <template v-slot:body>
+            <div class="font-bold text-3xl mb-8">Two Lines</div>
+
+            <div class="flex flex-row items-center mt-8 mb-8">
+                <div @click="contentHS('cont-cel')" class="w-6 h-6 black cursor-pointer cont-cel rotate-180 mr-2">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7"/>
+                    </svg>
+                </div>
+
+                <div class="font-bold text-xl mr-4">Conteúdo</div>
+            </div>
+
+            <div class="flex-col hidden cont-cel-content mb-8">
+                <a><img src="https://i.imgur.com/0p4MmcU.png" title="tle" /></a>
+
+                <div class="">Powered by
+                    <img class="h-12" src="https://i.pinimg.com/736x/bb/7c/4c/bb7c4cfe7485487929ff3af7e6cbe6f8.jpg" title="celestrak" />
+                </div>
+            </div>
+
+            <select  @input="selectGroupCelestrak($event.target.value)" class="p-3 rounded-md w-full mb-8" name="celestrak-group">
+                <option selected disabled hidden>Selecione um grupo</option>
+                <option v-for="item in celestrakGroups" :value="item.code">{{ item.name }}</option>
+            </select>
+
+            <div v-if="selectedGroup != null">
+                <select  @input="selectObjectCelestrak($event.target.value)" class="p-3 rounded-md w-full" name="celestrak-object">
+                    <option selected disabled hidden>Selecione um veículo espacial</option>
+                    <option v-for="item in celestrakObjects" :value="item.OBJECT_NAME">{{ item.OBJECT_NAME }}</option>
+                </select>
+            </div>
+            <div v-else>
+                <select class="p-3 rounded-md w-full" disabled>
+                    <option selected disabled hidden>Selecione um veiculo espacial</option>
+                </select>
+            </div>
+
+            <div v-if="selectedObject != null">
+                <div class="flex mr-4 w-ful">Argumento do Perigeu: </div>
+                <input :value="selectedObject.ARG_OF_PERICENTER" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+
+                <div class="flex mr-4 w-ful">BStar: </div>
+                <input :value="selectedObject.BSTAR" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+                <div class="flex mr-4 w-ful">Classificação: </div>
+                <input :value="selectedObject.CLASSIFICATION_TYPE" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+                <div class="flex mr-4 w-ful">Excentricidade: </div>
+                <input :value="selectedObject.ECCENTRICITY" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+                <div class="flex mr-4 w-ful">Element Set No: </div>
+                <input :value="selectedObject.ELEMENT_SET_NO" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+                <div class="flex mr-4 w-ful">Tipo de ephemeris: </div>
+                <input :value="selectedObject.EPHEMERIS_TYPE" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+                <div class="flex mr-4 w-ful">Epoch: </div>
+                <input :value="selectedObject.EPOCH" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+                <div class="flex mr-4 w-ful">Inclinação: </div>
+                <input :value="selectedObject.INCLINATION" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+                <div class="flex mr-4 w-ful">Anomalia Média: </div>
+                <input :value="selectedObject.MEAN_ANOMALY" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+                <div class="flex mr-4 w-ful">MOvimento Médio: </div>
+                <input :value="selectedObject.MEAN_MOTION" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+                <div class="flex mr-4 w-ful">Movimento Médio DDot: </div>
+                <input :value="selectedObject.MEAN_MOTION_DDOT" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+                <div class="flex mr-4 w-ful">Movimento Médio Dot: </div>
+                <input :value="selectedObject.MEAN_MOTION_DOT" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+                <div class="flex mr-4 w-ful">NORAD CAT ID: </div>
+                <input :value="selectedObject.NORAD_CAT_ID" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+                <div class="flex mr-4 w-ful">Object ID: </div>
+                <input :value="selectedObject.OBJECT_ID" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+                <div class="flex mr-4 w-ful">Object Name: </div>
+                <input :value="selectedObject.OBJECT_NAME" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+                <div class="flex mr-4 w-ful">RA do Nodo ascendente: </div>
+                <input :value="selectedObject.RA_OF_ASC_NODE" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+                <div class="flex mr-4 w-ful">Rev at Epoch: </div>
+                <input :value="selectedObject.REV_AT_EPOCH" class="p-3 rounded-md w-full mb-8" type="text" disabled>
+            </div>
+
+            
+
+
+
+        </template>
+
+        <template v-slot:footer>
+            <div></div>
+        </template>
+    </Modal>
+
+    <!-- <UserModal v-show="userModal">
         <template v-slot:header>
             <div></div>
         </template>
@@ -443,7 +565,7 @@
         <template v-slot:footer>
             <div></div>
         </template>
-    </UserModal>
+    </UserModal> -->
 
     <Modal v-show="modalSolarSystema">
         <template v-slot:header>
@@ -516,6 +638,7 @@
 import Modal from '@/components/Modal'
 import UserModal from '@/components/UserModal'
 import LineChart from './LineChart.vue'
+import _ from 'lodash'
 
 export default {
     name: "Home",
@@ -533,10 +656,28 @@ export default {
             modalManobras: false,
             modalLagrange: false,
             modalPousoLunar: false,
+            modalCelestrak: false,
             prefix:{
                 home: 'selected',
                 explore: '',
             },
+            celestrakGroups:[
+                {'code': 'last-30-days', 'name': 'Last 30 days'},
+                {'code': 'stations', 'name': 'Space Stations'},
+                {'code': 'visual', 'name': '100 (or so) Brightest'},
+                {'code': 'iridium-33-debris', 'name': 'Iridium 33 Debris'},
+                {'code': 'weather', 'name': 'Weather Satellites'},
+                {'code': 'starlink', 'name': 'Starlink Satellites'},
+                {'code': 'intelsat', 'name': 'Intelsat Satellites'},
+                {'code': 'iridium', 'name': 'Iridium Satellites'},
+                {'code': 'orbcomm', 'name': 'Orbcomm Satellites'},
+                {'code': 'cubesat', 'name': 'Cubesats'},
+                {'code': 'radar', 'name': 'Radar Calibration'},
+                {'code': 'planet', 'name': 'Planet Labs'}
+            ],
+            celestrakObjects: [],
+            selectedGroup: null,
+            selectedObject: null,
             home: true,
             explore: false,
             signin: true,
@@ -610,6 +751,20 @@ export default {
         })
     },
     methods:{
+        async selectGroupCelestrak(code){
+            this.selectedGroup = code
+            this.celestrakObjects = null
+            console.log(code)
+
+            const rawResponse = await fetch(`https://celestrak.org/NORAD/elements/gp.php?GROUP=${code}&FORMAT=json-pretty`, {
+            })
+
+            const content = await rawResponse.json()
+            this.celestrakObjects = content
+        },
+        selectObjectCelestrak(code){
+            this.selectedObject = _.find(this.celestrakObjects, {OBJECT_NAME: code})
+        },
         menu(ref){
             this.userModal = false
 

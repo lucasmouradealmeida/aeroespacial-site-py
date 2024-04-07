@@ -172,6 +172,12 @@ html {
     transition: transform 0.5s ease-in-out;
 }
 
+
+.cont {
+    transition: transform 0.5s ease-in-out;
+}
+
+
 .axisY {
     transition: transform 0.5s ease-in-out;
 }
@@ -181,6 +187,10 @@ html {
 }
 
 .cpouso {
+    transition: transform 0.5s ease-in-out;
+}
+
+.cont-content {
     transition: transform 0.5s ease-in-out;
 }
 
@@ -207,3 +217,4 @@ html {
 .rotate-0 {
     transform: rotate(0deg);
 }
+
