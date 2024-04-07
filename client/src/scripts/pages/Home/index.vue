@@ -2,7 +2,7 @@
     <div class="main">
         <div class="menu">
             <div class="logo flex flex-row">
-                <svg fill="#ffffff" class="ml-6 mt-6 w-10 h-10 rotate-90 text-white" version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                <svg fill="#ffffff" class="ml-6 w-10 h-10 rotate-90 text-white" version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                     viewBox="0 0 32 32" xml:space="preserve">
                     <g>
                         <path d="M16,9c-3.9,0-7,3.1-7,7s3.1,7,7,7s7-3.1,7-7S19.9,9,16,9z"/>
@@ -446,60 +446,117 @@
                 </div>
             </div>
 
-            <select  @input="selectGroupCelestrak($event.target.value)" class="p-3 rounded-md w-full mb-8" name="celestrak-group">
-                <option selected disabled hidden>Selecione um grupo</option>
-                <option v-for="item in celestrakGroups" :value="item.code">{{ item.name }}</option>
-            </select>
+            <div class="flex flex-row items-center mt-2 mb-4">
+                <div @click="contentHS('cont-search')" class="w-6 h-6 black cursor-pointer cont-search rotate-180 mr-2">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7"/>
+                    </svg>
+                </div>
 
-            <div v-if="selectedGroup != null">
-                <select  @input="selectObjectCelestrak($event.target.value)" class="p-3 rounded-md w-full" name="celestrak-object">
-                    <option selected disabled hidden>Selecione um veículo espacial</option>
-                    <option v-for="item in celestrakObjects" :value="item.OBJECT_NAME">{{ item.OBJECT_NAME }}</option>
+                <div class="font-bold text-xl mr-4">Pesquisa</div>               
+            </div>
+
+            <div class="flex-col hidden cont-search-content mt-4">
+                <select  @input="selectGroupCelestrak($event.target.value)" class="p-3 rounded-md w-full mb-8" name="celestrak-group">
+                    <option selected disabled hidden>Selecione um grupo</option>
+                    <option v-for="item in celestrakGroups" :value="item.code">{{ item.name }}</option>
                 </select>
-            </div>
-            <div v-else>
-                <select class="p-3 rounded-md w-full" disabled>
-                    <option selected disabled hidden>Selecione um veiculo espacial</option>
-                </select>
+
+                <div v-if="selectedGroup != null">
+                    <select  @input="selectObjectCelestrak($event.target.value)" class="p-3 rounded-md w-full" name="celestrak-object">
+                        <option selected disabled hidden>Selecione um veículo espacial</option>
+                        <option v-for="item in celestrakObjects" :value="item.OBJECT_NAME">{{ item.OBJECT_NAME }}</option>
+                    </select>
+                </div>
+                <div v-else>
+                    <select class="p-3 rounded-md w-full" disabled>
+                        <option selected disabled hidden>Selecione um veiculo espacial</option>
+                    </select>
+                </div>
+
+                <div v-if="selectedObject != null">
+                    <div class="bgblack mt-6 p-4 rounded-md">
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">Argumento do Perigeu:</div>
+                            <input :value="selectedObject.ARG_OF_PERICENTER" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">BStar:</div>
+                            <input :value="selectedObject.BSTAR" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">Classificação:</div>
+                            <input :value="selectedObject.CLASSIFICATION_TYPE" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">Excentricidade:</div>
+                            <input :value="selectedObject.ECCENTRICITY" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">Element Set No:</div>
+                            <input :value="selectedObject.ELEMENT_SET_NO" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">Tipo de ephemeris:</div>
+                            <input :value="selectedObject.EPHEMERIS_TYPE" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">Epoch:</div>
+                            <input :value="selectedObject.EPOCH" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">Inclinação:</div>
+                            <input :value="selectedObject.INCLINATION" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">Anomalia Média:</div>
+                            <input :value="selectedObject.MEAN_ANOMALY" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">Movimento Médio:</div>
+                            <input :value="selectedObject.MEAN_MOTION" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">Movimento Médio DDot:</div>
+                            <input :value="selectedObject.MEAN_MOTION_DDOT" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">Movimento Médio Dot:</div>
+                            <input :value="selectedObject.MEAN_MOTION_DOT" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">NORAD CAT ID:</div>
+                            <input :value="selectedObject.NORAD_CAT_ID" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">Object ID:</div>
+                            <input :value="selectedObject.OBJECT_ID" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">Object Name:</div>
+                            <input :value="selectedObject.OBJECT_NAME" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">RA do Nodo ascendente:</div>
+                            <input :value="selectedObject.RA_OF_ASC_NODE" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                        <div class="flex mb-4 text-gray-300">
+                            <div class="mr-4 w-1/3">Rev at Epoch:</div>
+                            <input :value="selectedObject.REV_AT_EPOCH" class="flex-1 p-2 bgblue rounded-md" type="text" disabled>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
-            <div v-if="selectedObject != null">
-                <div class="flex mr-4 w-ful">Argumento do Perigeu: </div>
-                <input :value="selectedObject.ARG_OF_PERICENTER" class="p-3 rounded-md w-full mb-8" type="text" disabled>
 
-                <div class="flex mr-4 w-ful">BStar: </div>
-                <input :value="selectedObject.BSTAR" class="p-3 rounded-md w-full mb-8" type="text" disabled>
-                <div class="flex mr-4 w-ful">Classificação: </div>
-                <input :value="selectedObject.CLASSIFICATION_TYPE" class="p-3 rounded-md w-full mb-8" type="text" disabled>
-                <div class="flex mr-4 w-ful">Excentricidade: </div>
-                <input :value="selectedObject.ECCENTRICITY" class="p-3 rounded-md w-full mb-8" type="text" disabled>
-                <div class="flex mr-4 w-ful">Element Set No: </div>
-                <input :value="selectedObject.ELEMENT_SET_NO" class="p-3 rounded-md w-full mb-8" type="text" disabled>
-                <div class="flex mr-4 w-ful">Tipo de ephemeris: </div>
-                <input :value="selectedObject.EPHEMERIS_TYPE" class="p-3 rounded-md w-full mb-8" type="text" disabled>
-                <div class="flex mr-4 w-ful">Epoch: </div>
-                <input :value="selectedObject.EPOCH" class="p-3 rounded-md w-full mb-8" type="text" disabled>
-                <div class="flex mr-4 w-ful">Inclinação: </div>
-                <input :value="selectedObject.INCLINATION" class="p-3 rounded-md w-full mb-8" type="text" disabled>
-                <div class="flex mr-4 w-ful">Anomalia Média: </div>
-                <input :value="selectedObject.MEAN_ANOMALY" class="p-3 rounded-md w-full mb-8" type="text" disabled>
-                <div class="flex mr-4 w-ful">MOvimento Médio: </div>
-                <input :value="selectedObject.MEAN_MOTION" class="p-3 rounded-md w-full mb-8" type="text" disabled>
-                <div class="flex mr-4 w-ful">Movimento Médio DDot: </div>
-                <input :value="selectedObject.MEAN_MOTION_DDOT" class="p-3 rounded-md w-full mb-8" type="text" disabled>
-                <div class="flex mr-4 w-ful">Movimento Médio Dot: </div>
-                <input :value="selectedObject.MEAN_MOTION_DOT" class="p-3 rounded-md w-full mb-8" type="text" disabled>
-                <div class="flex mr-4 w-ful">NORAD CAT ID: </div>
-                <input :value="selectedObject.NORAD_CAT_ID" class="p-3 rounded-md w-full mb-8" type="text" disabled>
-                <div class="flex mr-4 w-ful">Object ID: </div>
-                <input :value="selectedObject.OBJECT_ID" class="p-3 rounded-md w-full mb-8" type="text" disabled>
-                <div class="flex mr-4 w-ful">Object Name: </div>
-                <input :value="selectedObject.OBJECT_NAME" class="p-3 rounded-md w-full mb-8" type="text" disabled>
-                <div class="flex mr-4 w-ful">RA do Nodo ascendente: </div>
-                <input :value="selectedObject.RA_OF_ASC_NODE" class="p-3 rounded-md w-full mb-8" type="text" disabled>
-                <div class="flex mr-4 w-ful">Rev at Epoch: </div>
-                <input :value="selectedObject.REV_AT_EPOCH" class="p-3 rounded-md w-full mb-8" type="text" disabled>
-            </div>
+
+
+
+
+
+
         </template>
 
         <template v-slot:footer>

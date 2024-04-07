@@ -194,6 +194,22 @@ html {
     transition: transform 0.5s ease-in-out;
 }
 
+.cont-cel-content {
+    transition: transform 0.5s ease-in-out;
+}
+
+.cont-cel{
+    transition: transform 0.5s ease-in-out;
+}
+
+.cont-search-content {
+    transition: transform 0.5s ease-in-out;
+}
+
+.cont-search {
+    transition: transform 0.5s ease-in-out;
+}
+
 .axis-content {
     transition: transform 0.5s ease-in-out;
 }
@@ -218,3 +234,11 @@ html {
     transform: rotate(0deg);
 }
 
+
+.bgblue{
+    background-color: #324ab2;
+}
+
+.bgblack{
+    background-color: #222222;
+}
