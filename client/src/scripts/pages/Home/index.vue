@@ -500,11 +500,6 @@
                 <div class="flex mr-4 w-ful">Rev at Epoch: </div>
                 <input :value="selectedObject.REV_AT_EPOCH" class="p-3 rounded-md w-full mb-8" type="text" disabled>
             </div>
-
-            
-
-
-
         </template>
 
         <template v-slot:footer>
